@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KVKK Uyum — Veri Envanteri & Denetim</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-0:#060911; --bg-1:#0B0F19; --bg-2:#111726; --bg-3:#182032; --bg-inset:#0d1220;
+  --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.16);
+  --t0:#fff; --t1:#94A3B8; --t2:#64748B;
+  --acc:#6366F1; --ok:#10B981; --warn:#F59E0B; --bad:#EF4444; --info:#06B6D4;
+}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg-0);color:var(--t0)}
+.font-mono{font-family:'JetBrains Mono',monospace}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:4px}
+.spin{animation:sp 1s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+[hidden]{display:none!important}
+
+/* ---- asistan cevabi ---- */
+.cevap-govde p{margin:0 0 .7rem}
+.cevap-govde p:last-child{margin-bottom:0}
+.cevap-govde ul{margin:0 0 .7rem;padding-left:0;list-style:none}
+.cevap-govde li{position:relative;padding-left:1.05rem;margin-bottom:.42rem}
+.cevap-govde li::before{content:'';position:absolute;left:.28rem;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--t2)}
+.cevap-govde strong{color:#fff;font-weight:600}
+.cevap-govde em{color:#CBD5E1}
+
+/* baglayicilik bloklari: projenin zorunlu/tavsiye ayrimi gorsellesir */
+.blok{border-left:3px solid;padding:.8rem 0 .8rem 1rem;margin:0 0 1rem}
+.blok:last-child{margin-bottom:0}
+.blok-zorunlu{border-color:var(--ok);background:linear-gradient(90deg,rgba(16,185,129,.07),transparent 70%)}
+.blok-tavsiye{border-color:var(--warn);background:linear-gradient(90deg,rgba(245,158,11,.06),transparent 70%)}
+.blok-bas{display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem}
+.blok-rozet{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;padding:.14rem .44rem;border-radius:3px;border:1px solid}
+.blok-zorunlu .blok-rozet{color:var(--ok);border-color:rgba(16,185,129,.4);background:rgba(16,185,129,.12)}
+.blok-tavsiye .blok-rozet{color:var(--warn);border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.12)}
+.blok-ad{font-size:12.5px;font-weight:600;color:#E2E8F0}
+.blok-not{font-size:10.5px;color:var(--t2)}
+
+/* dayanak kunyeleri */
+.kunye{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:500;padding:.08rem .36rem;
+  border-radius:3px;border:1px solid;white-space:nowrap;cursor:pointer;transition:filter .12s}
+.kunye:hover{filter:brightness(1.35)}
+.k-kanun{color:#A5B4FC;border-color:rgba(99,102,241,.42);background:rgba(99,102,241,.15)}
+.k-kurul{color:#67E8F9;border-color:rgba(6,182,212,.38);background:rgba(6,182,212,.12)}
+.k-tavsiye{color:#FCD34D;border-color:rgba(245,158,11,.34);background:rgba(245,158,11,.1)}
+
+/* kapanis uyarisi */
+.serh{margin-top:1rem;padding-top:.7rem;border-top:1px dashed var(--line-2);
+  font-size:11px;line-height:1.5;color:var(--t2)}
+.kaynak-vurgu{background:rgba(99,102,241,.16)!important;box-shadow:inset 3px 0 0 var(--acc)}
+</style>
+</head>
+<body class="min-h-screen flex bg-[#060911] text-slate-100 antialiased selection:bg-indigo-500 selection:text-white">
+
+<aside class="w-64 shrink-0 border-r border-[var(--line)] bg-[var(--bg-1)] flex flex-col justify-between min-h-screen sticky top-0 h-screen overflow-y-auto">
+  <div class="p-4">
+    <div class="flex items-center gap-3 pb-5 border-b border-[var(--line)] mb-4">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/25">KV</div>
+      <div class="leading-tight">
+        <h2 class="text-sm font-bold text-white tracking-wide">KVKK Uyum</h2>
+        <p class="text-[11px] text-[var(--t2)] font-medium">6698 · Denetim v1.0</p>
+      </div>
+    </div>
+
+    <span class="text-[11px] font-bold uppercase tracking-wider text-[var(--t2)] px-2 block mb-2">Modüller</span>
+    <nav class="space-y-1" id="nav">
+      <button data-view="envanter" class="nav-btn w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-[13px] font-bold text-white bg-indigo-500/20 border border-indigo-500/30">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>Veri Envanteri
+      </button>
+      <button data-view="bulgular" class="nav-btn w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-[13px] font-medium text-[var(--t1)] hover:text-white hover:bg-[var(--bg-2)]">
+        <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span>Uyum Bulguları
+      </button>
+      <button data-view="asistan" class="nav-btn w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-[13px] font-medium text-[var(--t1)] hover:text-white hover:bg-[var(--bg-2)]">
+        <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>Mevzuat Asistanı
+      </button>
+      <button data-view="belgeler" class="nav-btn w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-[13px] font-medium text-[var(--t1)] hover:text-white hover:bg-[var(--bg-2)]">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Uyum Belgeleri
+      </button>
+      <button data-view="graf" class="nav-btn w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-[13px] font-medium text-[var(--t1)] hover:text-white hover:bg-[var(--bg-2)]">
+        <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>Bilgi Grafiği
+      </button>
+    </nav>
+
+    <div class="mt-6">
+      <span class="text-[11px] font-bold uppercase tracking-wider text-[var(--t2)] px-2 block mb-2">Kaynak</span>
+      <div class="px-2.5 py-2 rounded-lg bg-[var(--bg-2)] border border-[var(--line)] text-[11px] text-[var(--t1)] space-y-1" id="kaynak-ozet">
+        <div class="flex justify-between"><span>Mevzuat belgesi</span><span class="font-mono text-white">363</span></div>
+        <div class="flex justify-between"><span>Chunk</span><span class="font-mono text-white">4.868</span></div>
+        <div class="flex justify-between"><span>Graf düğümü</span><span class="font-mono text-white" id="graf-dugum">—</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-3 m-3 rounded-xl bg-[var(--bg-2)] border border-[var(--line)]">
+    <div class="flex items-center gap-2 text-[11px]">
+      <span class="w-2 h-2 rounded-full bg-emerald-500" id="health-dot"></span>
+      <span class="text-[var(--t1)]" id="health-text">Bağlanıyor…</span>
+    </div>
+  </div>
+</aside>
+
+<main class="flex-1 min-w-0 p-6 lg:p-8 overflow-y-auto">
+
+  <!-- ENVANTER + BULGULAR -->
+  <section id="view-envanter">
+    <div class="mb-5">
+      <div class="flex items-center gap-2 text-xs text-[var(--t1)] mb-1">
+        <span>Denetim</span><span class="text-[var(--t2)]">/</span>
+        <span class="text-white font-semibold" id="crumb">Veri Envanteri</span>
+      </div>
+      <h1 class="text-2xl font-extrabold text-white tracking-tight sm:text-3xl flex items-center gap-3">
+        <span id="baslik">Kişisel Veri İşleme Envanteri</span>
+        <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-mono" id="kayit-rozet">—</span>
+      </h1>
+      <p class="text-xs text-[var(--t1)] mt-1">Her sütunda bağımsız filtre, mevzuat dayanaklı uyum bulguları ve risk skorlaması.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6" id="kpi"></div>
+
+    <div class="rounded-2xl border border-[var(--line)] bg-[var(--bg-2)] shadow-2xl overflow-hidden mb-8">
+      <div class="border-b border-[var(--line)] bg-[var(--bg-1)]/70 px-5 pt-3.5">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+          <h2 class="text-sm font-bold text-white tracking-wide">Envanter Kayıtları</h2>
+          <span class="text-xs text-[var(--t2)] font-mono ml-1">sütun bazlı filtreler aktif</span>
+          <div class="ml-auto flex items-center gap-2">
+            <button id="btn-excel" class="h-8 px-3 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 text-[11px] font-semibold">Excel İndir</button>
+            <button id="btn-yeni" class="h-8 px-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-bold shadow-lg shadow-indigo-600/30">+ Yeni Kayıt</button>
+            <button id="btn-yenile" class="h-8 px-2.5 rounded-lg bg-[var(--bg-3)] hover:bg-[var(--line-2)] border border-[var(--line)] text-[11px] font-semibold text-[var(--t1)] hover:text-white">Yenile</button>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 overflow-x-auto border-t border-[var(--line)] pt-2" id="tabs"></div>
+      </div>
+
+      <div class="p-3.5 border-b border-[var(--line)] bg-[var(--bg-inset)]/60 flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+        <div class="flex items-center gap-3 flex-1 max-w-md">
+          <input id="q-genel" type="text" placeholder="Genel arama: birim, faaliyet, veri, sebep…"
+                 class="w-full bg-[var(--bg-2)] border border-[var(--line)] rounded-lg px-3 py-1.5 text-xs text-white placeholder-[var(--t2)] focus:outline-none focus:border-indigo-500">
+          <span class="text-xs text-[var(--t2)] whitespace-nowrap font-mono"><strong class="text-white" id="sonuc-say">0</strong> sonuç</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-1.5" id="rozetler"></div>
+      </div>
+
+      <div id="toplu-cubuk" class="px-3.5 py-2 border-b border-[var(--line)] bg-indigo-500/10 flex items-center gap-3" hidden>
+        <span class="text-xs font-bold text-white"><span id="secim-say">0</span> kayıt seçildi</span>
+        <button id="btn-tumunu-sec" class="text-[11px] font-semibold text-indigo-300 hover:text-white underline">Filtredeki tümünü seç</button>
+        <button id="btn-secim-temizle" class="text-[11px] font-semibold text-[var(--t1)] hover:text-white">Seçimi temizle</button>
+        <div class="ml-auto flex items-center gap-2">
+          <button id="btn-toplu-excel" class="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-[var(--bg-3)] border border-[var(--line)] text-[var(--t1)] hover:text-white">Seçilenleri dışa aktar</button>
+          <button id="btn-toplu-sil" class="px-3 py-1 rounded-md text-[11px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40 hover:bg-rose-500/30">Seçilenleri Sil</button>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse min-w-[1360px]">
+          <thead>
+            <tr class="bg-[var(--bg-1)] border-b border-[var(--line)] text-[11px] font-extrabold uppercase tracking-wider text-[var(--t1)]">
+              <th class="py-3 px-2 w-10 text-center"><input type="checkbox" id="sec-hepsi" class="rounded border-[var(--line-2)] bg-[var(--bg-inset)] text-indigo-600 focus:ring-0 cursor-pointer"></th>
+              <th class="py-3 px-3 w-14">Satır</th>
+              <th class="py-3 px-3 w-44">Birim</th>
+              <th class="py-3 px-3 w-48">Faaliyet</th>
+              <th class="py-3 px-3 w-36">Veri Kategorisi</th>
+              <th class="py-3 px-3 min-w-[220px]">Hukuki Sebep</th>
+              <th class="py-3 px-3 w-32">Saklama</th>
+              <th class="py-3 px-3 w-28">Risk</th>
+              <th class="py-3 px-3 min-w-[260px]">Uyum Bulguları</th>
+              <th class="py-3 px-3 w-16 text-right">İşlem</th>
+            </tr>
+            <tr class="bg-[var(--bg-inset)]/95 border-b border-[var(--line-2)]">
+              <td class="p-1.5"></td>
+              <td class="p-1.5 text-center text-[var(--t2)] font-mono text-[11px]">#</td>
+              <td class="p-1.5"><select id="f-birim" class="w-full bg-[var(--bg-2)] border border-[var(--line)] rounded px-1.5 py-1 text-[11px] text-white focus:outline-none focus:border-indigo-500"><option value="">Tüm birimler</option></select></td>
+              <td class="p-1.5"><select id="f-faaliyet" class="w-full bg-[var(--bg-2)] border border-[var(--line)] rounded px-1.5 py-1 text-[11px] text-white focus:outline-none focus:border-indigo-500"><option value="">Tüm faaliyetler</option></select></td>
+              <td class="p-1.5"><select id="f-kategori" class="w-full bg-[var(--bg-2)] border border-[var(--line)] rounded px-1.5 py-1 text-[11px] text-white focus:outline-none focus:border-indigo-500"><option value="">Tüm kategoriler</option></select></td>
+              <td class="p-1.5"><input id="f-sebep" type="text" placeholder="Sebepte filtrele…" class="w-full bg-[var(--bg-2)] border border-[var(--line)] rounded px-2 py-1 text-[11px] text-white placeholder-[var(--t2)] focus:outline-none focus:border-indigo-500"></td>
+              <td class="p-1.5 text-[10px] text-[var(--t2)] font-mono">93/3108 dolu</td>
+              <td class="p-1.5"><select id="f-seviye" class="w-full bg-[var(--bg-2)] border border-rose-500/40 text-rose-300 rounded px-1.5 py-1 text-[11px] font-semibold focus:outline-none">
+                  <option value="" class="bg-[var(--bg-2)] text-white">Tüm riskler</option>
+                  <option value="kritik" class="bg-[var(--bg-2)]">Kritik</option>
+                  <option value="yuksek" class="bg-[var(--bg-2)]">Yüksek</option>
+                  <option value="orta" class="bg-[var(--bg-2)]">Orta</option></select></td>
+              <td class="p-1.5 text-[10px] text-[var(--t2)]">dayanak KVKK maddesi</td>
+              <td class="p-1.5 text-right"><button id="btn-sifirla" class="px-2 py-1 text-[10.5px] font-semibold text-indigo-400 hover:text-white rounded bg-[var(--bg-3)] border border-[var(--line)]">Sıfırla</button></td>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--line)] font-medium" id="tbody">
+            <tr><td colspan="10" class="py-16 text-center text-[var(--t2)] text-xs">Yükleniyor…</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="p-4 bg-[var(--bg-1)]/80 border-t border-[var(--line)] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-4 text-xs text-[var(--t1)]">
+          <div class="flex items-center gap-2"><span>Sayfa boyutu:</span>
+            <select id="sayfa-boyut" class="bg-[var(--bg-inset)] border border-[var(--line)] rounded-md px-2 py-1 text-xs text-white focus:outline-none">
+              <option>25</option><option selected>50</option><option>100</option></select></div>
+          <div class="hidden md:block text-[var(--t2)]" id="sayfa-bilgi">—</div>
+        </div>
+        <div class="flex items-center gap-1.5" id="sayfalama"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEVZUAT ASİSTANI -->
+  <section id="view-asistan" hidden>
+    <div class="flex items-start justify-between gap-4 mb-4">
+      <div>
+        <h1 class="text-2xl font-extrabold text-white tracking-tight sm:text-3xl mb-1">Mevzuat Asistanı</h1>
+        <p class="text-xs text-[var(--t1)]">Sohbet ederek sorun; cevaplar korpustaki kaynaklara dayanır. Kendi veri işleme faaliyetinizden söz ederseniz asistan envanter durumunu kontrol eder.</p>
+      </div>
+      <button id="btn-yeni-sohbet" class="shrink-0 px-3 py-1.5 text-xs font-semibold rounded-lg bg-[var(--bg-3)] border border-[var(--line)] text-[var(--t1)] hover:text-white">Yeni sohbet</button>
+    </div>
+
+    <div class="rounded-2xl border border-[var(--line)] bg-[var(--bg-2)] flex flex-col" style="height: calc(100vh - 190px); min-height: 480px;">
+      <div id="chat-mesajlar" class="flex-1 overflow-y-auto p-5 space-y-4">
+        <div id="chat-bos" class="h-full flex flex-col items-center justify-center text-center">
+          <p class="text-sm font-semibold text-white mb-1">Ne sormak istersiniz?</p>
+          <p class="text-[11px] text-[var(--t2)] mb-4 max-w-md">Genel bir mevzuat sorusu sorabilir ya da kurumunuzun somut bir veri işleme faaliyetini anlatabilirsiniz.</p>
+          <div class="flex flex-wrap justify-center gap-1.5 max-w-2xl" id="ornek-sorular"></div>
+        </div>
+      </div>
+      <div class="border-t border-[var(--line)] p-3 bg-[var(--bg-1)]/60 rounded-b-2xl">
+        <div class="flex gap-2 items-end">
+          <textarea id="chat-girdi" rows="1" placeholder="Mesaj yazın… (Enter gönderir, Shift+Enter yeni satır)"
+                    class="flex-1 resize-none bg-[var(--bg-inset)] border border-[var(--line)] rounded-lg px-3 py-2.5 text-sm text-white placeholder-[var(--t2)] focus:outline-none focus:border-indigo-500 max-h-40"></textarea>
+          <button id="btn-gonder" class="px-5 py-2.5 text-sm font-bold rounded-lg bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed text-white shadow-lg shadow-indigo-600/30 whitespace-nowrap">Gönder</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UYUM BELGELERİ -->
+  <section id="view-belgeler" hidden>
+    <h1 class="text-2xl font-extrabold text-white tracking-tight sm:text-3xl mb-1">Uyum Belgeleri</h1>
+    <p class="text-xs text-[var(--t1)] mb-5">Kurum profili ve veri envanterinden KVKK uyum belgeleri üretilir. Şablonlardaki alanlar envanterdeki gerçek değerlerle doldurulur.</p>
+
+    <div class="rounded-2xl border border-[var(--line)] bg-[var(--bg-2)] p-5 mb-5">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+        <h3 class="text-sm font-bold text-white">Kurum Profili</h3>
+        <span class="text-[10.5px] text-[var(--t2)]">bir kez kaydedilir, tüm belgelerde kullanılır</span>
+        <span id="profil-durum" class="text-[10.5px] ml-auto"></span>
+        <button id="btn-profil-kaydet" class="px-3 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-bold">Profili Kaydet</button>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3" id="profil-form"></div>
+    </div>
+
+    <div class="rounded-2xl border border-[var(--line)] bg-[var(--bg-2)] overflow-hidden">
+      <div class="px-5 py-3 border-b border-[var(--line)] bg-[var(--bg-1)]/70 flex items-center gap-2">
+        <h3 class="text-sm font-bold text-white">Üretilebilir Belgeler</h3>
+        <span class="text-[10.5px] text-[var(--t2)]" id="belge-kapsam"></span>
+      </div>
+      <div id="belge-liste" class="divide-y divide-[var(--line)]">
+        <div class="px-5 py-8 text-center text-xs text-[var(--t2)]">Yükleniyor…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BİLGİ GRAFİĞİ -->
+  <section id="view-graf" hidden>
+    <h1 class="text-2xl font-extrabold text-white tracking-tight sm:text-3xl mb-1">Bilgi Grafiği</h1>
+    <p class="text-xs text-[var(--t1)] mb-5">Envanter satırları, faaliyetler ve KVKK maddeleri arasındaki ilişkiler.</p>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div class="rounded-2xl border border-[var(--line)] bg-[var(--bg-2)] overflow-hidden">
+        <div class="px-5 py-3 border-b border-[var(--line)] bg-[var(--bg-1)]/70"><h3 class="text-sm font-bold text-white">En Riskli Faaliyetler</h3></div>
+        <div id="graf-risk" class="divide-y divide-[var(--line)]"></div>
+      </div>
+      <div class="rounded-2xl border border-[var(--line)] bg-[var(--bg-2)] overflow-hidden">
+        <div class="px-5 py-3 border-b border-[var(--line)] bg-[var(--bg-1)]/70 flex items-center gap-2">
+          <h3 class="text-sm font-bold text-white">Madde Etkisi</h3>
+          <input id="madde-no" value="6" class="w-16 bg-[var(--bg-inset)] border border-[var(--line)] rounded px-2 py-1 text-xs font-mono text-white focus:outline-none">
+          <button id="btn-madde" class="px-2.5 py-1 text-[11px] font-semibold rounded bg-[var(--bg-3)] border border-[var(--line)] text-[var(--t1)] hover:text-white">Getir</button>
+        </div>
+        <div id="graf-madde" class="p-5 text-xs text-[var(--t1)]"></div>
+      </div>
+      <div class="rounded-2xl border border-[var(--line)] bg-[var(--bg-2)] overflow-hidden lg:col-span-2">
+        <div class="px-5 py-3 border-b border-[var(--line)] bg-[var(--bg-1)]/70"><h3 class="text-sm font-bold text-white">Graf İstatistikleri</h3></div>
+        <div id="graf-stats" class="p-5 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3 text-xs"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="app.js"></script>
+<script src="form.js"></script>
+<script src="belgeler.js"></script>
+</body>
+</html>

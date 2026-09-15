@@ -1,0 +1,265 @@
+    */
+    public function run(): void
+    {
+        $purposes = [
+            [
+                'name' => 'Acil Durum Yönetimi Süreçlerinin Yürütülmesi',
+                'description' => 'Acil durum yönetimi süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Bilgi Güvenliği Süreçlerinin Yürütülmesi',
+                'description' => 'Bilgi güvenliği süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Çalışan Adayı / Stajyer / Öğrenci Seçme Ve Yerleştirme Süreçlerinin Yürütülmesi',
+                'description' => 'Çalışan adayı / stajyer / öğrenci seçme ve yerleştirme süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Çalışan Adaylarının Başvuru Süreçlerinin Yürütülmesi',
+                'description' => 'Çalışan adaylarının başvuru süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Çalışan Memnuniyeti Ve Bağlılığı Süreçlerinin Yürütülmesi',
+                'description' => 'Çalışan memnuniyeti ve bağlılığı süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Çalışanlar İçin İş Akdi Ve Mevzuattan Kaynaklı Yükümlülüklerin Yerine Getirilmesi',
+                'description' => 'Çalışanlar için iş akdi ve mevzuattan kaynaklı yükümlülüklerin yerine getirilmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Çalışanlar İçin Yan Haklar Ve Menfaatleri Süreçlerinin Yürütülmesi',
+                'description' => 'Çalışanlar için yan haklar ve menfaatleri süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Denetim / Etik Faaliyetlerinin Yürütülmesi',
+                'description' => 'Denetim / etik faaliyetlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Eğitim Faaliyetlerinin Yürütülmesi',
+                'description' => 'Eğitim faaliyetlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Erişim Yetkilerinin Yürütülmesi',
+                'description' => 'Erişim yetkilerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Faaliyetlerin Mevzuata Uygun Yürütülmesi',
+                'description' => 'Faaliyetlerin mevzuata uygun yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Finans Ve Muhasebe İşlerinin Yürütülmesi',
+                'description' => 'Finans ve muhasebe işlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Firma / Ürün / Hizmetlere Bağlılık Süreçlerinin Yürütülmesi',
+                'description' => 'Firma / ürün / hizmetlere bağlılık süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Fiziksel Mekan Güvenliğinin Temini',
+                'description' => 'Fiziksel mekan güvenliğinin temini',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Görevlendirme Süreçlerinin Yürütülmesi',
+                'description' => 'Görevlendirme süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Hukuk İşlerinin Takibi Ve Yürütülmesi',
+                'description' => 'Hukuk işlerinin takibi ve yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'İç Denetim/ Soruşturma / İstihbarat Faaliyetlerinin Yürütülmesi',
+                'description' => 'İç denetim/ soruşturma / istihbarat faaliyetlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'İletişim Faaliyetlerinin Yürütülmesi',
+                'description' => 'İletişim faaliyetlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'İnsan Kaynakları Süreçlerinin Planlanması',
+                'description' => 'İnsan kaynakları süreçlerinin planlanması',
+                'is_active' => true
+            ],
+            [
+                'name' => 'İş Faaliyetlerinin Yürütülmesi / Denetimi',
+                'description' => 'İş faaliyetlerinin yürütülmesi / denetimi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'İş Sağlığı / Güvenliği Faaliyetlerinin Yürütülmesi',
+                'description' => 'İş sağlığı / güvenliği faaliyetlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'İş Süreçlerinin İyileştirilmesine Yönelik Önerilerin Alınması Ve Değerlendirilmesi',
+                'description' => 'İş süreçlerinin iyileştirilmesine yönelik önerilerin alınması ve değerlendirilmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'İş Sürekliliğinin Sağlanması Faaliyetlerinin Yürütülmesi',
+                'description' => 'İş sürekliliğinin sağlanması faaliyetlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Lojistik Faaliyetlerinin Yürütülmesi',
+                'description' => 'Lojistik faaliyetlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Mal / Hizmet Satın Alım Süreçlerinin Yürütülmesi',
+                'description' => 'Mal / hizmet satın alım süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Mal / Hizmet Satış Sonrası Destek Hizmetlerinin Yürütülmesi',
+                'description' => 'Mal / hizmet satış sonrası destek hizmetlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Mal / Hizmet Satış Süreçlerinin Yürütülmesi',
+                'description' => 'Mal / hizmet satış süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Mal / Hizmet Üretim Ve Operasyon Süreçlerinin Yürütülmesi',
+                'description' => 'Mal / hizmet üretim ve operasyon süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Müşteri İlişkileri Yönetimi Süreçlerinin Yürütülmesi',
+                'description' => 'Müşteri ilişkileri yönetimi süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Müşteri Memnuniyetine Yönelik Aktivitelerin Yürütülmesi',
+                'description' => 'Müşteri memnuniyetine yönelik aktivitelerin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Organizasyon Ve Etkinlik Yönetimi',
+                'description' => 'Organizasyon ve etkinlik yönetimi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Pazarlama Analiz Çalışmalarının Yürütülmesi',
+                'description' => 'Pazarlama analiz çalışmalarının yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Performans Değerlendirme Süreçlerinin Yürütülmesi',
+                'description' => 'Performans değerlendirme süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Reklam / Kampanya / Promosyon Süreçlerinin Yürütülmesi',
+                'description' => 'Reklam / kampanya / promosyon süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Risk Yönetimi Süreçlerinin Yürütülmesi',
+                'description' => 'Risk yönetimi süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Saklama Ve Arşiv Faaliyetlerinin Yürütülmesi',
+                'description' => 'Saklama ve arşiv faaliyetlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Sosyal Sorumluluk Ve Sivil Toplum Aktivitelerinin Yürütülmesi',
+                'description' => 'Sosyal sorumluluk ve sivil toplum aktivitelerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Sözleşme Süreçlerinin Yürütülmesi',
+                'description' => 'Sözleşme süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Sponsorluk Faaliyetlerinin Yürütülmesi',
+                'description' => 'Sponsorluk faaliyetlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Stratejik Planlama Faaliyetlerinin Yürütülmesi',
+                'description' => 'Stratejik planlama faaliyetlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Talep / Şikayetlerin Takibi',
+                'description' => 'Talep / şikayetlerin takibi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Taşınır Mal Ve Kaynakların Güvenliğinin Temini',
+                'description' => 'Taşınır mal ve kaynakların güvenliğinin temini',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Tedarik Zinciri Yönetimi Süreçlerinin Yürütülmesi',
+                'description' => 'Tedarik zinciri yönetimi süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Ücret Politikasının Yürütülmesi',
+                'description' => 'Ücret politikasının yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Ürün / Hizmetlerin Pazarlama Süreçlerinin Yürütülmesi',
+                'description' => 'Ürün / hizmetlerin pazarlama süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Veri Sorumlusu Operasyonlarının Güvenliğinin Temini',
+                'description' => 'Veri sorumlusu operasyonlarının güvenliğinin temini',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Yabancı Personel Çalışma Ve Oturma İzni İşlemleri',
+                'description' => 'Yabancı personel çalışma ve oturma izni işlemleri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Yatırım Süreçlerinin Yürütülmesi',
+                'description' => 'Yatırım süreçlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Yetenek / Kariyer Gelişimi Faaliyetlerinin Yürütülmesi',
+                'description' => 'Yetenek / kariyer gelişimi faaliyetlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Yetkili Kişi, Kurum Ve Kuruluşlara Bilgi Verilmesi',
+                'description' => 'Yetkili kişi, kurum ve kuruluşlara bilgi verilmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Yönetim Faaliyetlerinin Yürütülmesi',
+                'description' => 'Yönetim faaliyetlerinin yürütülmesi',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Ziyaretçi Kayıtlarının Oluşturulması Ve Takibi',
+                'description' => 'Ziyaretçi kayıtlarının oluşturulması ve takibi',
+                'is_active' => true
+            ]
+        ];

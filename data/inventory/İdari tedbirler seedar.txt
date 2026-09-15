@@ -1,0 +1,89 @@
+ $measures = [
+            [
+                'name' => 'Çalışanlar için veri güvenliği hükümleri içeren disiplin düzenlemeleri mevcuttur.',
+                'description' => 'Çalışanlar için veri güvenliği hükümleri içeren disiplin düzenlemeleri mevcuttur.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Çalışanlar için veri güvenliği konusunda belli aralıklarla eğitim ve farkındalık çalışmaları yapılmaktadır.',
+                'description' => 'Çalışanlar için veri güvenliği konusunda belli aralıklarla eğitim ve farkındalık çalışmaları yapılmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Erişim, bilgi güvenliği, kullanım, saklama ve imha konularında kurumsal politikalar hazırlanmış ve uygulamaya başlanmıştır.',
+                'description' => 'Erişim, bilgi güvenliği, kullanım, saklama ve imha konularında kurumsal politikalar hazırlanmış ve uygulamaya başlanmıştır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Gizlilik taahhütnameleri yapılmaktadır.',
+                'description' => 'Gizlilik taahhütnameleri yapılmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Görev değişikliği olan ya da işten ayrılan çalışanların bu alandaki yetkileri kaldırılmaktadır.',
+                'description' => 'Görev değişikliği olan ya da işten ayrılan çalışanların bu alandaki yetkileri kaldırılmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'İmzalanan sözleşmeler veri güvenliği hükümleri içermektedir.',
+                'description' => 'İmzalanan sözleşmeler veri güvenliği hükümleri içermektedir.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kağıt yoluyla aktarılan kişisel veriler için ekstra güvenlik tedbirleri alınmakta ve ilgili evrak gizlilik dereceli belge formatında gönderilmektedir.',
+                'description' => 'Kağıt yoluyla aktarılan kişisel veriler için ekstra güvenlik tedbirleri alınmakta ve ilgili evrak gizlilik dereceli belge formatında gönderilmektedir.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kişisel veri güvenliğinin takibi yapılmaktadır.',
+                'description' => 'Kişisel veri güvenliğinin takibi yapılmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kişisel veri güvenliği politika ve prosedürleri belirlenmiştir.',
+                'description' => 'Kişisel veri güvenliği politika ve prosedürleri belirlenmiştir.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kişisel veri güvenliği sorunları hızlı bir şekilde raporlanmaktadır.',
+                'description' => 'Kişisel veri güvenliği sorunları hızlı bir şekilde raporlanmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kişisel veri içeren fiziksel ortamlara giriş çıkışlarla ilgili gerekli güvenlik önlemleri alınmaktadır.',
+                'description' => 'Kişisel veri içeren fiziksel ortamlara giriş çıkışlarla ilgili gerekli güvenlik önlemleri alınmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kişisel veriler mümkün olduğunca azaltılmaktadır.',
+                'description' => 'Kişisel veriler mümkün olduğunca azaltılmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kurum içi periyodik ve/veya rastgele denetimler yapılmakta ve yaptırılmaktadır.',
+                'description' => 'Kurum içi periyodik ve/veya rastgele denetimler yapılmakta ve yaptırılmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Mevcut risk ve tehditler belirlenmiştir.',
+                'description' => 'Mevcut risk ve tehditler belirlenmiştir.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Özel nitelikli kişisel veri güvenliğine yönelik protokol ve prosedürler belirlenmiş ve uygulanmaktadır.',
+                'description' => 'Özel nitelikli kişisel veri güvenliğine yönelik protokol ve prosedürler belirlenmiş ve uygulanmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Veri işleyen hizmet sağlayıcılarının veri güvenliği konusunda belli aralıklarla denetimi sağlanmaktadır.',
+                'description' => 'Veri işleyen hizmet sağlayıcılarının veri güvenliği konusunda belli aralıklarla denetimi sağlanmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Veri işleyen hizmet sağlayıcılarının, veri güvenliği konusunda farkındalığı sağlanmaktadır.',
+                'description' => 'Veri işleyen hizmet sağlayıcılarının, veri güvenliği konusunda farkındalığı sağlanmaktadır.',
+                'is_active' => true,
+            ],
+        ];
+
+        foreach ($measures as $measure) {

@@ -1,0 +1,128 @@
+<?php
+
+namespace Database\Seeders\kvkk;
+
+use App\Models\KVKK\TechnicalMeasure;
+use Illuminate\Database\Seeder;
+
+class TechnicalMeasureSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $measures = [
+            [
+                'name' => 'Ağ güvenliği ve uygulama güvenliği sağlanmaktadır.',
+                'description' => 'Ağ güvenliği ve uygulama güvenliği sağlanmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Ağ yoluyla kişisel veri aktarımlarında kapalı sistem ağ kullanılmaktadır.',
+                'description' => 'Ağ yoluyla kişisel veri aktarımlarında kapalı sistem ağ kullanılmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Anahtar yönetimi uygulanmaktadır.',
+                'description' => 'Anahtar yönetimi uygulanmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Bilgi teknolojileri sistemleri tedarik, gelistirme ve bakımı kapsamındaki güvenlik önlemleri alınmaktadır.',
+                'description' => 'Bilgi teknolojileri sistemleri tedarik, gelistirme ve bakımı kapsamındaki güvenlik önlemleri alınmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Bulutta depolanan kişisel verilerin güvenliği sağlanmaktadır.',
+                'description' => 'Bulutta depolanan kişisel verilerin güvenliği sağlanmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Erişim logları düzenli olarak tutulmaktadır.',
+                'description' => 'Erişim logları düzenli olarak tutulmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Gerektiğinde veri maskeleme önlemi uygulanmaktadır.',
+                'description' => 'Gerektiğinde veri maskeleme önlemi uygulanmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Güncel anti-virüs sistemleri kullanılmaktadır.',
+                'description' => 'Güncel anti-virüs sistemleri kullanılmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Güvenlik duvarları kullanılmaktadır.',
+                'description' => 'Güvenlik duvarları kullanılmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kişisel veri içeren fiziksel ortamların dış risklere (yangın, sel vb.) karşı güvenliği sağlanmaktadır.',
+                'description' => 'Kişisel veri içeren fiziksel ortamların dış risklere (yangın, sel vb.) karşı güvenliği sağlanmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kişisel veri içeren ortamların güvenliği sağlanmaktadır.',
+                'description' => 'Kişisel veri içeren ortamların güvenliği sağlanmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kişisel veriler yedeklenmekte ve yedeklenen kişisel verilerin güvenliği de sağlanmaktadır.',
+                'description' => 'Kişisel veriler yedeklenmekte ve yedeklenen kişisel verilerin güvenliği de sağlanmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kullanıcı hesap yönetimi ve yetki kontrol sistemi uygulanmakta olup bunların takibi de yapılmaktadır.',
+                'description' => 'Kullanıcı hesap yönetimi ve yetki kontrol sistemi uygulanmakta olup bunların takibi de yapılmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Çalışanlar için yetki matrisi oluşturulmuştur.',
+                'description' => 'Çalışanlar için yetki matrisi oluşturulmuştur.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Log kayıtları kullanıcı müdahalesi olmayacak şekilde tutulmaktadır.',
+                'description' => 'Log kayıtları kullanıcı müdahalesi olmayacak şekilde tutulmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Özel nitelikli kişisel veriler elektronik posta yoluyla gönderilecekse mutlaka şifreli olarak ve KEP veya kurumsal posta hesabı kullanılarak gönderilmektedir.',
+                'description' => 'Özel nitelikli kişisel veriler elektronik posta yoluyla gönderilecekse mutlaka şifreli olarak ve KEP veya kurumsal posta hesabı kullanılarak gönderilmektedir.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Özel nitelikli kişisel veriler için güvenli şifreleme / kriptografik anahtarlar kullanılmakta ve farklı birimlerce yönetilmektedir.',
+                'description' => 'Özel nitelikli kişisel veriler için güvenli şifreleme / kriptografik anahtarlar kullanılmakta ve farklı birimlerce yönetilmektedir.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Saldırı tespit ve önleme sistemleri kullanılmaktadır.',
+                'description' => 'Saldırı tespit ve önleme sistemleri kullanılmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Sızma testi uygulanmaktadır.',
+                'description' => 'Sızma testi uygulanmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Siber güvenlik önlemleri alınmış olup uygulanması sürekli takip edilmektedir.',
+                'description' => 'Siber güvenlik önlemleri alınmış olup uygulanması sürekli takip edilmektedir.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Şifreleme yapılmaktadır.',
+                'description' => 'Şifreleme yapılmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Taşınabilir bellek, CD, DVD ortamında aktarılan özel nitelikli kişiler veriler şifrelenerek aktarılmaktadır.',
+                'description' => 'Taşınabilir bellek, CD, DVD ortamında aktarılan özel nitelikli kişiler veriler şifrelenerek aktarılmaktadır.',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Veri kaybı önleme yazılımları kullanılmaktadır.',
+                'description' => 'Veri kaybı önleme yazılımları kullanılmaktadır.',
+                'is_active' => true,
+            ],
+        ];

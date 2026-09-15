@@ -1,0 +1,618 @@
+{
+  "veri_kategorisi": [
+    {
+      "ad": "Kimlik",
+      "aciklama": "Kimlik bilgileri"
+    },
+    {
+      "ad": "İletişim",
+      "aciklama": "İletişim bilgileri"
+    },
+    {
+      "ad": "Lokasyon",
+      "aciklama": "Konum bilgileri"
+    },
+    {
+      "ad": "Özlük",
+      "aciklama": "Personel özlük bilgileri"
+    },
+    {
+      "ad": "Hukuki İşlem",
+      "aciklama": "Hukuki işlem bilgileri"
+    },
+    {
+      "ad": "Müşteri İşlem",
+      "aciklama": "Müşteri işlem bilgileri"
+    },
+    {
+      "ad": "Fiziksel Mekan Güvenliği",
+      "aciklama": "Fiziksel mekan güvenliği bilgileri"
+    },
+    {
+      "ad": "İşlem Güvenliği",
+      "aciklama": "İşlem güvenliği bilgileri"
+    },
+    {
+      "ad": "Risk Yönetimi",
+      "aciklama": "Risk yönetimi bilgileri"
+    },
+    {
+      "ad": "Finans",
+      "aciklama": "Finansal bilgiler"
+    },
+    {
+      "ad": "Mesleki Deneyim",
+      "aciklama": "Mesleki deneyim bilgileri"
+    },
+    {
+      "ad": "Pazarlama",
+      "aciklama": "Pazarlama bilgileri"
+    },
+    {
+      "ad": "Görsel ve İşitsel Kayıtlar",
+      "aciklama": "Görsel ve işitsel kayıtlar"
+    },
+    {
+      "ad": "Irk ve Etnik Köken",
+      "aciklama": "Irk ve etnik köken bilgileri"
+    },
+    {
+      "ad": "Siyasi Düşünce",
+      "aciklama": "Siyasi düşünce bilgileri"
+    },
+    {
+      "ad": "Felsefi İnanç, Din, Mezhep ve Diğer İnançlar",
+      "aciklama": "İnanç bilgileri"
+    },
+    {
+      "ad": "Kılık ve Kıyafet",
+      "aciklama": "Kılık ve kıyafet bilgileri"
+    },
+    {
+      "ad": "Dernek Üyeliği",
+      "aciklama": "Dernek üyelik bilgileri"
+    },
+    {
+      "ad": "Vakıf Üyeliği",
+      "aciklama": "Vakıf üyelik bilgileri"
+    },
+    {
+      "ad": "Sendika Üyeliği",
+      "aciklama": "Sendika üyelik bilgileri"
+    },
+    {
+      "ad": "Sağlık Bilgileri",
+      "aciklama": "Sağlık bilgileri"
+    },
+    {
+      "ad": "Cinsel Hayat",
+      "aciklama": "Cinsel hayat bilgileri"
+    },
+    {
+      "ad": "Ceza Mahkumiyeti ve Güvenlik Tedbirleri",
+      "aciklama": "Ceza mahkumiyeti ve güvenlik tedbirleri bilgileri"
+    },
+    {
+      "ad": "Biyometrik Veri",
+      "aciklama": "Biyometrik veriler"
+    },
+    {
+      "ad": "Genetik Veri",
+      "aciklama": "Genetik veriler"
+    }
+  ],
+  "hukuki_sebep": [
+    {
+      "ad": "İlgili Kişinin Açık Rızasının Varlığı",
+      "aciklama": "Kişisel Veri İşleme Şartları"
+    },
+    {
+      "ad": "Kanunlarda Açıkça Öngörülmesi",
+      "aciklama": "Kişisel Veri İşleme Şartları"
+    },
+    {
+      "ad": "Fiili İmkânsızlık Nedeniyle Rızasını Açıklayamayacak Durumda Bulunan veya Rızasına Hukuki Geçerlilik Tanınmayan Kişinin Kendisinin ya da Bir Başkasının Hayatı veya Beden Bütünlüğünün Korunması İçin Zorunlu Olması",
+      "aciklama": "Kişisel Veri İşleme Şartları"
+    },
+    {
+      "ad": "Bir Sözleşmenin Kurulması veya İfasıyla Doğrudan Doğruya İlgili Olması Kaydıyla Sözleşmenin Taraflarına Ait Kişisel Verilerin İşlenmesinin Gerekli Olması",
+      "aciklama": "Kişisel Veri İşleme Şartları"
+    },
+    {
+      "ad": "Veri Sorumlusunun Hukuki Yükümlülüğünü Yerine Getirebilmesi İçin Zorunlu Olması",
+      "aciklama": "Kişisel Veri İşleme Şartları"
+    },
+    {
+      "ad": "İlgili Kişinin Kendisi Tarafından Alenileştirilmiş Olması",
+      "aciklama": "Kişisel Veri İşleme Şartları"
+    },
+    {
+      "ad": "Bir Hakkın Tesisi, Kullanılması veya Korunması İçin Veri İşlemenin Zorunlu Olması",
+      "aciklama": "Kişisel Veri İşleme Şartları"
+    },
+    {
+      "ad": "İlgili Kişinin Temel Hak ve Özgürlüklerine Zarar Vermemek Kaydıyla, Veri Sorumlusunun Meşru Menfaatleri İçin Veri İşlenmesinin Zorunlu Olması",
+      "aciklama": "Kişisel Veri İşleme Şartları"
+    },
+    {
+      "ad": "İlgili Kişinin Açık Rızasının Olması",
+      "aciklama": "Özel Nitelikli Kişisel Veri İşleme Şartları"
+    },
+    {
+      "ad": "Kanunlarda Açıkça Öngörülmesi",
+      "aciklama": "Özel Nitelikli Kişisel Veri İşleme Şartları"
+    },
+    {
+      "ad": "Fiili İmkânsızlık Nedeniyle Rızasını Açıklayamayacak Durumda Bulunan veya Rızasına Hukuki Geçerlilik Tanınmayan Kişinin, Kendisinin ya da Bir Başkasının Hayatı veya Beden Bütünlüğünün Korunması İçin Zorunlu Olması",
+      "aciklama": "Özel Nitelikli Kişisel Veri İşleme Şartları"
+    },
+    {
+      "ad": "İlgili Kişinin Alenileştirdiği Kişisel Verilere İlişkin ve Alenileştirme İradesine Uygun Olması",
+      "aciklama": "Özel Nitelikli Kişisel Veri İşleme Şartları"
+    },
+    {
+      "ad": "Bir Hakkın Tesisi, Kullanılması veya Korunması İçin Zorunlu Olması",
+      "aciklama": "Özel Nitelikli Kişisel Veri İşleme Şartları"
+    },
+    {
+      "ad": "Sır Saklama Yükümlülüğü Altında Bulunan Kişiler veya Yetkili Kurum ve Kuruluşlarca, Kamu Sağlığının Korunması, Koruyucu Hekimlik, Tıbbi Teşhis, Tedavi ve Bakım Hizmetlerinin Yürütülmesi ile Sağlık Hizmetlerinin Planlanması, Yönetimi ve Finansmanı Amacıyla Gerekli Olması",
+      "aciklama": "Özel Nitelikli Kişisel Veri İşleme Şartları"
+    },
+    {
+      "ad": "İstihdam, İş Sağlığı ve Güvenliği, Sosyal Güvenlik, Sosyal Hizmetler ve Sosyal Yardım Alanlarındaki Hukuki Yükümlülüklerin Yerine Getirilmesi İçin Zorunlu Olması",
+      "aciklama": "Özel Nitelikli Kişisel Veri İşleme Şartları"
+    },
+    {
+      "ad": "Siyasi, Felsefi, Dini veya Sendikal Amaçlarla Kurulan Vakıf, Dernek ve Diğer Kâr Amacı Gütmeyen Kuruluş ya da Oluşumların, Tâbi Oldukları Mevzuata ve Amaçlarına Uygun Olmak, Faaliyet Alanlarıyla Sınırlı Olmak ve Üçüncü Kişilere Açıklanmamak Kaydıyla; Mevcut veya Eski Üyelerine ve Mensuplarına Veyahut Bu Kuruluş ve Oluşumlarla Düzenli Olarak Temasta Olan Kişilere Yönelik Olması",
+      "aciklama": "Özel Nitelikli Kişisel Veri İşleme Şartları"
+    },
+    {
+      "ad": "Kişisel Verilerin, Üçüncü Kişilere Verilmemek ve Veri Güvenliğine İlişkin Yükümlülüklere Uyulmak Kaydıyla Gerçek Kişiler Tarafından Tamamen Kendisiyle veya Aynı Konutta Yaşayan Aile Fertleriyle İlgili Faaliyetler Kapsamında İşlenmesi",
+      "aciklama": "İstisna Sebepler ile Veri İşleme"
+    },
+    {
+      "ad": "Kişisel Verilerin Resmi İstatistik ile Anonim Hâle Getirilmek Suretiyle Araştırma, Planlama ve İstatistik Gibi Amaçlarla İşlenmesi",
+      "aciklama": "İstisna Sebepler ile Veri İşleme"
+    },
+    {
+      "ad": "Kişisel Verilerin Millî Savunmayı, Millî Güvenliği, Kamu Güvenliğini, Kamu Düzenini, Ekonomik Güvenliği, Özel Hayatın Gizliliğini veya Kişilik Haklarını İhlal Etmemek ya da Suç Teşkil Etmemek Kaydıyla, Sanat, Tarih, Edebiyat veya Bilimsel Amaçlarla ya da İfade Özgürlüğü Kapsamında İşlenmesi",
+      "aciklama": "İstisna Sebepler ile Veri İşleme"
+    },
+    {
+      "ad": "Kişisel Verilerin Millî Savunmayı, Millî Güvenliği, Kamu Güvenliğini, Kamu Düzenini veya Ekonomik Güvenliği Sağlamaya Yönelik Olarak Kanunla Görev ve Yetki Verilmiş Kamu Kurum ve Kuruluşları Tarafından Yürütülen Önleyici, Koruyucu ve İstihbari Faaliyetler Kapsamında İşlenmesi",
+      "aciklama": "İstisna Sebepler ile Veri İşleme"
+    },
+    {
+      "ad": "Kişisel Verilerin Soruşturma, Kovuşturma, Yargılama veya İnfaz İşlemlerine İlişkin Olarak Yargı Makamları veya İnfaz Mercileri Tarafından İşlenmesi",
+      "aciklama": "İstisna Sebepler ile Veri İşleme"
+    },
+    {
+      "ad": "Kişisel Veri İşlemenin Suç İşlenmesinin Önlenmesi veya Suç Soruşturması İçin Gerekli Olması",
+      "aciklama": "İstisna Sebepler ile Veri İşleme"
+    },
+    {
+      "ad": "İlgili Kişinin Kendisi Tarafından Alenileştirilmiş Kişisel Verilerin İşlenmesi",
+      "aciklama": "İstisna Sebepler ile Veri İşleme"
+    },
+    {
+      "ad": "Kişisel Veri İşlemenin Kanunun Verdiği Yetkiye Dayanılarak Görevli ve Yetkili Kamu Kurum ve Kuruluşları ile Kamu Kurumu Niteliğindeki Meslek Kuruluşlarınca, Denetleme veya Düzenleme Görevlerinin Yürütülmesi ile Disiplin Soruşturma veya Kovuşturması İçin Gerekli Olması",
+      "aciklama": "İstisna Sebepler ile Veri İşleme"
+    },
+    {
+      "ad": "Kişisel Veri İşlemenin Bütçe, Vergi ve Mali Konulara İlişkin Olarak Devletin Ekonomik ve Mali Çıkarlarının Korunması İçin Gerekli Olması",
+      "aciklama": "İstisna Sebepler ile Veri İşleme"
+    }
+  ],
+  "alici_grubu": [
+    {
+      "ad": "Gerçek kişiler veya özel hukuk tüzel kişileri",
+      "aciklama": "Gerçek kişiler veya özel hukuk tüzel kişileri"
+    },
+    {
+      "ad": "Herkese açık",
+      "aciklama": "Herkese açık alıcı grubu"
+    },
+    {
+      "ad": "Hissedarlar",
+      "aciklama": "Şirket hissedarları"
+    },
+    {
+      "ad": "İş Ortakları",
+      "aciklama": "Şirket iş ortakları"
+    },
+    {
+      "ad": "İştirakler ve bağlı ortaklıklar",
+      "aciklama": "İştirakler ve bağlı ortaklıklar"
+    },
+    {
+      "ad": "Tedarikçiler",
+      "aciklama": "Şirket tedarikçileri"
+    },
+    {
+      "ad": "Topluluk Şirketleri",
+      "aciklama": "Topluluk şirketleri"
+    },
+    {
+      "ad": "Yetkili Kamu Kurum ve Kuruluşları",
+      "aciklama": "Yetkili kamu kurum ve kuruluşları"
+    },
+    {
+      "ad": "Yurt Dışı",
+      "aciklama": "Yurt dışı alıcı grubu"
+    }
+  ],
+  "teknik_tedbir": [
+    {
+      "ad": "Ağ güvenliği ve uygulama güvenliği sağlanmaktadır.",
+      "aciklama": "Ağ güvenliği ve uygulama güvenliği sağlanmaktadır."
+    },
+    {
+      "ad": "Ağ yoluyla kişisel veri aktarımlarında kapalı sistem ağ kullanılmaktadır.",
+      "aciklama": "Ağ yoluyla kişisel veri aktarımlarında kapalı sistem ağ kullanılmaktadır."
+    },
+    {
+      "ad": "Anahtar yönetimi uygulanmaktadır.",
+      "aciklama": "Anahtar yönetimi uygulanmaktadır."
+    },
+    {
+      "ad": "Bilgi teknolojileri sistemleri tedarik, gelistirme ve bakımı kapsamındaki güvenlik önlemleri alınmaktadır.",
+      "aciklama": "Bilgi teknolojileri sistemleri tedarik, gelistirme ve bakımı kapsamındaki güvenlik önlemleri alınmaktadır."
+    },
+    {
+      "ad": "Bulutta depolanan kişisel verilerin güvenliği sağlanmaktadır.",
+      "aciklama": "Bulutta depolanan kişisel verilerin güvenliği sağlanmaktadır."
+    },
+    {
+      "ad": "Erişim logları düzenli olarak tutulmaktadır.",
+      "aciklama": "Erişim logları düzenli olarak tutulmaktadır."
+    },
+    {
+      "ad": "Gerektiğinde veri maskeleme önlemi uygulanmaktadır.",
+      "aciklama": "Gerektiğinde veri maskeleme önlemi uygulanmaktadır."
+    },
+    {
+      "ad": "Güncel anti-virüs sistemleri kullanılmaktadır.",
+      "aciklama": "Güncel anti-virüs sistemleri kullanılmaktadır."
+    },
+    {
+      "ad": "Güvenlik duvarları kullanılmaktadır.",
+      "aciklama": "Güvenlik duvarları kullanılmaktadır."
+    },
+    {
+      "ad": "Kişisel veri içeren fiziksel ortamların dış risklere (yangın, sel vb.) karşı güvenliği sağlanmaktadır.",
+      "aciklama": "Kişisel veri içeren fiziksel ortamların dış risklere (yangın, sel vb.) karşı güvenliği sağlanmaktadır."
+    },
+    {
+      "ad": "Kişisel veri içeren ortamların güvenliği sağlanmaktadır.",
+      "aciklama": "Kişisel veri içeren ortamların güvenliği sağlanmaktadır."
+    },
+    {
+      "ad": "Kişisel veriler yedeklenmekte ve yedeklenen kişisel verilerin güvenliği de sağlanmaktadır.",
+      "aciklama": "Kişisel veriler yedeklenmekte ve yedeklenen kişisel verilerin güvenliği de sağlanmaktadır."
+    },
+    {
+      "ad": "Kullanıcı hesap yönetimi ve yetki kontrol sistemi uygulanmakta olup bunların takibi de yapılmaktadır.",
+      "aciklama": "Kullanıcı hesap yönetimi ve yetki kontrol sistemi uygulanmakta olup bunların takibi de yapılmaktadır."
+    },
+    {
+      "ad": "Çalışanlar için yetki matrisi oluşturulmuştur.",
+      "aciklama": "Çalışanlar için yetki matrisi oluşturulmuştur."
+    },
+    {
+      "ad": "Log kayıtları kullanıcı müdahalesi olmayacak şekilde tutulmaktadır.",
+      "aciklama": "Log kayıtları kullanıcı müdahalesi olmayacak şekilde tutulmaktadır."
+    },
+    {
+      "ad": "Özel nitelikli kişisel veriler elektronik posta yoluyla gönderilecekse mutlaka şifreli olarak ve KEP veya kurumsal posta hesabı kullanılarak gönderilmektedir.",
+      "aciklama": "Özel nitelikli kişisel veriler elektronik posta yoluyla gönderilecekse mutlaka şifreli olarak ve KEP veya kurumsal posta hesabı kullanılarak gönderilmektedir."
+    },
+    {
+      "ad": "Özel nitelikli kişisel veriler için güvenli şifreleme / kriptografik anahtarlar kullanılmakta ve farklı birimlerce yönetilmektedir.",
+      "aciklama": "Özel nitelikli kişisel veriler için güvenli şifreleme / kriptografik anahtarlar kullanılmakta ve farklı birimlerce yönetilmektedir."
+    },
+    {
+      "ad": "Saldırı tespit ve önleme sistemleri kullanılmaktadır.",
+      "aciklama": "Saldırı tespit ve önleme sistemleri kullanılmaktadır."
+    },
+    {
+      "ad": "Sızma testi uygulanmaktadır.",
+      "aciklama": "Sızma testi uygulanmaktadır."
+    },
+    {
+      "ad": "Siber güvenlik önlemleri alınmış olup uygulanması sürekli takip edilmektedir.",
+      "aciklama": "Siber güvenlik önlemleri alınmış olup uygulanması sürekli takip edilmektedir."
+    },
+    {
+      "ad": "Şifreleme yapılmaktadır.",
+      "aciklama": "Şifreleme yapılmaktadır."
+    },
+    {
+      "ad": "Taşınabilir bellek, CD, DVD ortamında aktarılan özel nitelikli kişiler veriler şifrelenerek aktarılmaktadır.",
+      "aciklama": "Taşınabilir bellek, CD, DVD ortamında aktarılan özel nitelikli kişiler veriler şifrelenerek aktarılmaktadır."
+    },
+    {
+      "ad": "Veri kaybı önleme yazılımları kullanılmaktadır.",
+      "aciklama": "Veri kaybı önleme yazılımları kullanılmaktadır."
+    }
+  ],
+  "idari_tedbir": [
+    {
+      "ad": "Çalışanlar için veri güvenliği hükümleri içeren disiplin düzenlemeleri mevcuttur.",
+      "aciklama": "Çalışanlar için veri güvenliği hükümleri içeren disiplin düzenlemeleri mevcuttur."
+    },
+    {
+      "ad": "Çalışanlar için veri güvenliği konusunda belli aralıklarla eğitim ve farkındalık çalışmaları yapılmaktadır.",
+      "aciklama": "Çalışanlar için veri güvenliği konusunda belli aralıklarla eğitim ve farkındalık çalışmaları yapılmaktadır."
+    },
+    {
+      "ad": "Erişim, bilgi güvenliği, kullanım, saklama ve imha konularında kurumsal politikalar hazırlanmış ve uygulamaya başlanmıştır.",
+      "aciklama": "Erişim, bilgi güvenliği, kullanım, saklama ve imha konularında kurumsal politikalar hazırlanmış ve uygulamaya başlanmıştır."
+    },
+    {
+      "ad": "Gizlilik taahhütnameleri yapılmaktadır.",
+      "aciklama": "Gizlilik taahhütnameleri yapılmaktadır."
+    },
+    {
+      "ad": "Görev değişikliği olan ya da işten ayrılan çalışanların bu alandaki yetkileri kaldırılmaktadır.",
+      "aciklama": "Görev değişikliği olan ya da işten ayrılan çalışanların bu alandaki yetkileri kaldırılmaktadır."
+    },
+    {
+      "ad": "İmzalanan sözleşmeler veri güvenliği hükümleri içermektedir.",
+      "aciklama": "İmzalanan sözleşmeler veri güvenliği hükümleri içermektedir."
+    },
+    {
+      "ad": "Kağıt yoluyla aktarılan kişisel veriler için ekstra güvenlik tedbirleri alınmakta ve ilgili evrak gizlilik dereceli belge formatında gönderilmektedir.",
+      "aciklama": "Kağıt yoluyla aktarılan kişisel veriler için ekstra güvenlik tedbirleri alınmakta ve ilgili evrak gizlilik dereceli belge formatında gönderilmektedir."
+    },
+    {
+      "ad": "Kişisel veri güvenliğinin takibi yapılmaktadır.",
+      "aciklama": "Kişisel veri güvenliğinin takibi yapılmaktadır."
+    },
+    {
+      "ad": "Kişisel veri güvenliği politika ve prosedürleri belirlenmiştir.",
+      "aciklama": "Kişisel veri güvenliği politika ve prosedürleri belirlenmiştir."
+    },
+    {
+      "ad": "Kişisel veri güvenliği sorunları hızlı bir şekilde raporlanmaktadır.",
+      "aciklama": "Kişisel veri güvenliği sorunları hızlı bir şekilde raporlanmaktadır."
+    },
+    {
+      "ad": "Kişisel veri içeren fiziksel ortamlara giriş çıkışlarla ilgili gerekli güvenlik önlemleri alınmaktadır.",
+      "aciklama": "Kişisel veri içeren fiziksel ortamlara giriş çıkışlarla ilgili gerekli güvenlik önlemleri alınmaktadır."
+    },
+    {
+      "ad": "Kişisel veriler mümkün olduğunca azaltılmaktadır.",
+      "aciklama": "Kişisel veriler mümkün olduğunca azaltılmaktadır."
+    },
+    {
+      "ad": "Kurum içi periyodik ve/veya rastgele denetimler yapılmakta ve yaptırılmaktadır.",
+      "aciklama": "Kurum içi periyodik ve/veya rastgele denetimler yapılmakta ve yaptırılmaktadır."
+    },
+    {
+      "ad": "Mevcut risk ve tehditler belirlenmiştir.",
+      "aciklama": "Mevcut risk ve tehditler belirlenmiştir."
+    },
+    {
+      "ad": "Özel nitelikli kişisel veri güvenliğine yönelik protokol ve prosedürler belirlenmiş ve uygulanmaktadır.",
+      "aciklama": "Özel nitelikli kişisel veri güvenliğine yönelik protokol ve prosedürler belirlenmiş ve uygulanmaktadır."
+    },
+    {
+      "ad": "Veri işleyen hizmet sağlayıcılarının veri güvenliği konusunda belli aralıklarla denetimi sağlanmaktadır.",
+      "aciklama": "Veri işleyen hizmet sağlayıcılarının veri güvenliği konusunda belli aralıklarla denetimi sağlanmaktadır."
+    },
+    {
+      "ad": "Veri işleyen hizmet sağlayıcılarının, veri güvenliği konusunda farkındalığı sağlanmaktadır.",
+      "aciklama": "Veri işleyen hizmet sağlayıcılarının, veri güvenliği konusunda farkındalığı sağlanmaktadır."
+    }
+  ],
+  "isleme_amaci": [
+    {
+      "ad": "Acil Durum Yönetimi Süreçlerinin Yürütülmesi",
+      "aciklama": "Acil durum yönetimi süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Bilgi Güvenliği Süreçlerinin Yürütülmesi",
+      "aciklama": "Bilgi güvenliği süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Çalışan Adayı / Stajyer / Öğrenci Seçme Ve Yerleştirme Süreçlerinin Yürütülmesi",
+      "aciklama": "Çalışan adayı / stajyer / öğrenci seçme ve yerleştirme süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Çalışan Adaylarının Başvuru Süreçlerinin Yürütülmesi",
+      "aciklama": "Çalışan adaylarının başvuru süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Çalışan Memnuniyeti Ve Bağlılığı Süreçlerinin Yürütülmesi",
+      "aciklama": "Çalışan memnuniyeti ve bağlılığı süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Çalışanlar İçin İş Akdi Ve Mevzuattan Kaynaklı Yükümlülüklerin Yerine Getirilmesi",
+      "aciklama": "Çalışanlar için iş akdi ve mevzuattan kaynaklı yükümlülüklerin yerine getirilmesi"
+    },
+    {
+      "ad": "Çalışanlar İçin Yan Haklar Ve Menfaatleri Süreçlerinin Yürütülmesi",
+      "aciklama": "Çalışanlar için yan haklar ve menfaatleri süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Denetim / Etik Faaliyetlerinin Yürütülmesi",
+      "aciklama": "Denetim / etik faaliyetlerinin yürütülmesi"
+    },
+    {
+      "ad": "Eğitim Faaliyetlerinin Yürütülmesi",
+      "aciklama": "Eğitim faaliyetlerinin yürütülmesi"
+    },
+    {
+      "ad": "Erişim Yetkilerinin Yürütülmesi",
+      "aciklama": "Erişim yetkilerinin yürütülmesi"
+    },
+    {
+      "ad": "Faaliyetlerin Mevzuata Uygun Yürütülmesi",
+      "aciklama": "Faaliyetlerin mevzuata uygun yürütülmesi"
+    },
+    {
+      "ad": "Finans Ve Muhasebe İşlerinin Yürütülmesi",
+      "aciklama": "Finans ve muhasebe işlerinin yürütülmesi"
+    },
+    {
+      "ad": "Firma / Ürün / Hizmetlere Bağlılık Süreçlerinin Yürütülmesi",
+      "aciklama": "Firma / ürün / hizmetlere bağlılık süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Fiziksel Mekan Güvenliğinin Temini",
+      "aciklama": "Fiziksel mekan güvenliğinin temini"
+    },
+    {
+      "ad": "Görevlendirme Süreçlerinin Yürütülmesi",
+      "aciklama": "Görevlendirme süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Hukuk İşlerinin Takibi Ve Yürütülmesi",
+      "aciklama": "Hukuk işlerinin takibi ve yürütülmesi"
+    },
+    {
+      "ad": "İç Denetim/ Soruşturma / İstihbarat Faaliyetlerinin Yürütülmesi",
+      "aciklama": "İç denetim/ soruşturma / istihbarat faaliyetlerinin yürütülmesi"
+    },
+    {
+      "ad": "İletişim Faaliyetlerinin Yürütülmesi",
+      "aciklama": "İletişim faaliyetlerinin yürütülmesi"
+    },
+    {
+      "ad": "İnsan Kaynakları Süreçlerinin Planlanması",
+      "aciklama": "İnsan kaynakları süreçlerinin planlanması"
+    },
+    {
+      "ad": "İş Faaliyetlerinin Yürütülmesi / Denetimi",
+      "aciklama": "İş faaliyetlerinin yürütülmesi / denetimi"
+    },
+    {
+      "ad": "İş Sağlığı / Güvenliği Faaliyetlerinin Yürütülmesi",
+      "aciklama": "İş sağlığı / güvenliği faaliyetlerinin yürütülmesi"
+    },
+    {
+      "ad": "İş Süreçlerinin İyileştirilmesine Yönelik Önerilerin Alınması Ve Değerlendirilmesi",
+      "aciklama": "İş süreçlerinin iyileştirilmesine yönelik önerilerin alınması ve değerlendirilmesi"
+    },
+    {
+      "ad": "İş Sürekliliğinin Sağlanması Faaliyetlerinin Yürütülmesi",
+      "aciklama": "İş sürekliliğinin sağlanması faaliyetlerinin yürütülmesi"
+    },
+    {
+      "ad": "Lojistik Faaliyetlerinin Yürütülmesi",
+      "aciklama": "Lojistik faaliyetlerinin yürütülmesi"
+    },
+    {
+      "ad": "Mal / Hizmet Satın Alım Süreçlerinin Yürütülmesi",
+      "aciklama": "Mal / hizmet satın alım süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Mal / Hizmet Satış Sonrası Destek Hizmetlerinin Yürütülmesi",
+      "aciklama": "Mal / hizmet satış sonrası destek hizmetlerinin yürütülmesi"
+    },
+    {
+      "ad": "Mal / Hizmet Satış Süreçlerinin Yürütülmesi",
+      "aciklama": "Mal / hizmet satış süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Mal / Hizmet Üretim Ve Operasyon Süreçlerinin Yürütülmesi",
+      "aciklama": "Mal / hizmet üretim ve operasyon süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Müşteri İlişkileri Yönetimi Süreçlerinin Yürütülmesi",
+      "aciklama": "Müşteri ilişkileri yönetimi süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Müşteri Memnuniyetine Yönelik Aktivitelerin Yürütülmesi",
+      "aciklama": "Müşteri memnuniyetine yönelik aktivitelerin yürütülmesi"
+    },
+    {
+      "ad": "Organizasyon Ve Etkinlik Yönetimi",
+      "aciklama": "Organizasyon ve etkinlik yönetimi"
+    },
+    {
+      "ad": "Pazarlama Analiz Çalışmalarının Yürütülmesi",
+      "aciklama": "Pazarlama analiz çalışmalarının yürütülmesi"
+    },
+    {
+      "ad": "Performans Değerlendirme Süreçlerinin Yürütülmesi",
+      "aciklama": "Performans değerlendirme süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Reklam / Kampanya / Promosyon Süreçlerinin Yürütülmesi",
+      "aciklama": "Reklam / kampanya / promosyon süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Risk Yönetimi Süreçlerinin Yürütülmesi",
+      "aciklama": "Risk yönetimi süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Saklama Ve Arşiv Faaliyetlerinin Yürütülmesi",
+      "aciklama": "Saklama ve arşiv faaliyetlerinin yürütülmesi"
+    },
+    {
+      "ad": "Sosyal Sorumluluk Ve Sivil Toplum Aktivitelerinin Yürütülmesi",
+      "aciklama": "Sosyal sorumluluk ve sivil toplum aktivitelerinin yürütülmesi"
+    },
+    {
+      "ad": "Sözleşme Süreçlerinin Yürütülmesi",
+      "aciklama": "Sözleşme süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Sponsorluk Faaliyetlerinin Yürütülmesi",
+      "aciklama": "Sponsorluk faaliyetlerinin yürütülmesi"
+    },
+    {
+      "ad": "Stratejik Planlama Faaliyetlerinin Yürütülmesi",
+      "aciklama": "Stratejik planlama faaliyetlerinin yürütülmesi"
+    },
+    {
+      "ad": "Talep / Şikayetlerin Takibi",
+      "aciklama": "Talep / şikayetlerin takibi"
+    },
+    {
+      "ad": "Taşınır Mal Ve Kaynakların Güvenliğinin Temini",
+      "aciklama": "Taşınır mal ve kaynakların güvenliğinin temini"
+    },
+    {
+      "ad": "Tedarik Zinciri Yönetimi Süreçlerinin Yürütülmesi",
+      "aciklama": "Tedarik zinciri yönetimi süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Ücret Politikasının Yürütülmesi",
+      "aciklama": "Ücret politikasının yürütülmesi"
+    },
+    {
+      "ad": "Ürün / Hizmetlerin Pazarlama Süreçlerinin Yürütülmesi",
+      "aciklama": "Ürün / hizmetlerin pazarlama süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Veri Sorumlusu Operasyonlarının Güvenliğinin Temini",
+      "aciklama": "Veri sorumlusu operasyonlarının güvenliğinin temini"
+    },
+    {
+      "ad": "Yabancı Personel Çalışma Ve Oturma İzni İşlemleri",
+      "aciklama": "Yabancı personel çalışma ve oturma izni işlemleri"
+    },
+    {
+      "ad": "Yatırım Süreçlerinin Yürütülmesi",
+      "aciklama": "Yatırım süreçlerinin yürütülmesi"
+    },
+    {
+      "ad": "Yetenek / Kariyer Gelişimi Faaliyetlerinin Yürütülmesi",
+      "aciklama": "Yetenek / kariyer gelişimi faaliyetlerinin yürütülmesi"
+    },
+    {
+      "ad": "Yetkili Kişi, Kurum Ve Kuruluşlara Bilgi Verilmesi",
+      "aciklama": "Yetkili kişi, kurum ve kuruluşlara bilgi verilmesi"
+    },
+    {
+      "ad": "Yönetim Faaliyetlerinin Yürütülmesi",
+      "aciklama": "Yönetim faaliyetlerinin yürütülmesi"
+    },
+    {
+      "ad": "Ziyaretçi Kayıtlarının Oluşturulması Ve Takibi",
+      "aciklama": "Ziyaretçi kayıtlarının oluşturulması ve takibi"
+    }
+  ]
+}

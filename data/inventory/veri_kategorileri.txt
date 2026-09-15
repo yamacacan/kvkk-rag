@@ -1,0 +1,127 @@
+        $categories = [
+            [
+                'name' => 'Kimlik',
+                'description' => 'Kimlik bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'İletişim',
+                'description' => 'İletişim bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Lokasyon',
+                'description' => 'Konum bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Özlük',
+                'description' => 'Personel özlük bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Hukuki İşlem',
+                'description' => 'Hukuki işlem bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Müşteri İşlem',
+                'description' => 'Müşteri işlem bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Fiziksel Mekan Güvenliği',
+                'description' => 'Fiziksel mekan güvenliği bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'İşlem Güvenliği',
+                'description' => 'İşlem güvenliği bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Risk Yönetimi',
+                'description' => 'Risk yönetimi bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Finans',
+                'description' => 'Finansal bilgiler',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Mesleki Deneyim',
+                'description' => 'Mesleki deneyim bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Pazarlama',
+                'description' => 'Pazarlama bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Görsel ve İşitsel Kayıtlar',
+                'description' => 'Görsel ve işitsel kayıtlar',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Irk ve Etnik Köken',
+                'description' => 'Irk ve etnik köken bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Siyasi Düşünce',
+                'description' => 'Siyasi düşünce bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Felsefi İnanç, Din, Mezhep ve Diğer İnançlar',
+                'description' => 'İnanç bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Kılık ve Kıyafet',
+                'description' => 'Kılık ve kıyafet bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Dernek Üyeliği',
+                'description' => 'Dernek üyelik bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Vakıf Üyeliği',
+                'description' => 'Vakıf üyelik bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Sendika Üyeliği',
+                'description' => 'Sendika üyelik bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Sağlık Bilgileri',
+                'description' => 'Sağlık bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Cinsel Hayat',
+                'description' => 'Cinsel hayat bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Ceza Mahkumiyeti ve Güvenlik Tedbirleri',
+                'description' => 'Ceza mahkumiyeti ve güvenlik tedbirleri bilgileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Biyometrik Veri',
+                'description' => 'Biyometrik veriler',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Genetik Veri',
+                'description' => 'Genetik veriler',
+                'is_active' => true
+            ]
+        ];

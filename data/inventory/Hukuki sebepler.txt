@@ -1,0 +1,135 @@
+   */
+    public function run(): void
+    {
+        $legalBases = [
+            // Kişisel Veri İşleme Şartları
+            [
+                'name' => 'İlgili Kişinin Açık Rızasının Varlığı',
+                'description' => 'Kişisel Veri İşleme Şartları',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kanunlarda Açıkça Öngörülmesi',
+                'description' => 'Kişisel Veri İşleme Şartları',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Fiili İmkânsızlık Nedeniyle Rızasını Açıklayamayacak Durumda Bulunan veya Rızasına Hukuki Geçerlilik Tanınmayan Kişinin Kendisinin ya da Bir Başkasının Hayatı veya Beden Bütünlüğünün Korunması İçin Zorunlu Olması',
+                'description' => 'Kişisel Veri İşleme Şartları',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Bir Sözleşmenin Kurulması veya İfasıyla Doğrudan Doğruya İlgili Olması Kaydıyla Sözleşmenin Taraflarına Ait Kişisel Verilerin İşlenmesinin Gerekli Olması',
+                'description' => 'Kişisel Veri İşleme Şartları',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Veri Sorumlusunun Hukuki Yükümlülüğünü Yerine Getirebilmesi İçin Zorunlu Olması',
+                'description' => 'Kişisel Veri İşleme Şartları',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'İlgili Kişinin Kendisi Tarafından Alenileştirilmiş Olması',
+                'description' => 'Kişisel Veri İşleme Şartları',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Bir Hakkın Tesisi, Kullanılması veya Korunması İçin Veri İşlemenin Zorunlu Olması',
+                'description' => 'Kişisel Veri İşleme Şartları',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'İlgili Kişinin Temel Hak ve Özgürlüklerine Zarar Vermemek Kaydıyla, Veri Sorumlusunun Meşru Menfaatleri İçin Veri İşlenmesinin Zorunlu Olması',
+                'description' => 'Kişisel Veri İşleme Şartları',
+                'is_active' => true,
+            ],
+
+            // Özel Nitelikli Kişisel Veri İşleme Şartları
+            [
+                'name' => 'İlgili Kişinin Açık Rızasının Olması',
+                'description' => 'Özel Nitelikli Kişisel Veri İşleme Şartları',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kanunlarda Açıkça Öngörülmesi',
+                'description' => 'Özel Nitelikli Kişisel Veri İşleme Şartları',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Fiili İmkânsızlık Nedeniyle Rızasını Açıklayamayacak Durumda Bulunan veya Rızasına Hukuki Geçerlilik Tanınmayan Kişinin, Kendisinin ya da Bir Başkasının Hayatı veya Beden Bütünlüğünün Korunması İçin Zorunlu Olması',
+                'description' => 'Özel Nitelikli Kişisel Veri İşleme Şartları',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'İlgili Kişinin Alenileştirdiği Kişisel Verilere İlişkin ve Alenileştirme İradesine Uygun Olması',
+                'description' => 'Özel Nitelikli Kişisel Veri İşleme Şartları',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Bir Hakkın Tesisi, Kullanılması veya Korunması İçin Zorunlu Olması',
+                'description' => 'Özel Nitelikli Kişisel Veri İşleme Şartları',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Sır Saklama Yükümlülüğü Altında Bulunan Kişiler veya Yetkili Kurum ve Kuruluşlarca, Kamu Sağlığının Korunması, Koruyucu Hekimlik, Tıbbi Teşhis, Tedavi ve Bakım Hizmetlerinin Yürütülmesi ile Sağlık Hizmetlerinin Planlanması, Yönetimi ve Finansmanı Amacıyla Gerekli Olması',
+                'description' => 'Özel Nitelikli Kişisel Veri İşleme Şartları',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'İstihdam, İş Sağlığı ve Güvenliği, Sosyal Güvenlik, Sosyal Hizmetler ve Sosyal Yardım Alanlarındaki Hukuki Yükümlülüklerin Yerine Getirilmesi İçin Zorunlu Olması',
+                'description' => 'Özel Nitelikli Kişisel Veri İşleme Şartları',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Siyasi, Felsefi, Dini veya Sendikal Amaçlarla Kurulan Vakıf, Dernek ve Diğer Kâr Amacı Gütmeyen Kuruluş ya da Oluşumların, Tâbi Oldukları Mevzuata ve Amaçlarına Uygun Olmak, Faaliyet Alanlarıyla Sınırlı Olmak ve Üçüncü Kişilere Açıklanmamak Kaydıyla; Mevcut veya Eski Üyelerine ve Mensuplarına Veyahut Bu Kuruluş ve Oluşumlarla Düzenli Olarak Temasta Olan Kişilere Yönelik Olması',
+                'description' => 'Özel Nitelikli Kişisel Veri İşleme Şartları',
+                'is_active' => true,
+            ],
+
+            // İstisna Sebepler ile Veri İşleme
+            [
+                'name' => 'Kişisel Verilerin, Üçüncü Kişilere Verilmemek ve Veri Güvenliğine İlişkin Yükümlülüklere Uyulmak Kaydıyla Gerçek Kişiler Tarafından Tamamen Kendisiyle veya Aynı Konutta Yaşayan Aile Fertleriyle İlgili Faaliyetler Kapsamında İşlenmesi',
+                'description' => 'İstisna Sebepler ile Veri İşleme',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kişisel Verilerin Resmi İstatistik ile Anonim Hâle Getirilmek Suretiyle Araştırma, Planlama ve İstatistik Gibi Amaçlarla İşlenmesi',
+                'description' => 'İstisna Sebepler ile Veri İşleme',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kişisel Verilerin Millî Savunmayı, Millî Güvenliği, Kamu Güvenliğini, Kamu Düzenini, Ekonomik Güvenliği, Özel Hayatın Gizliliğini veya Kişilik Haklarını İhlal Etmemek ya da Suç Teşkil Etmemek Kaydıyla, Sanat, Tarih, Edebiyat veya Bilimsel Amaçlarla ya da İfade Özgürlüğü Kapsamında İşlenmesi',
+                'description' => 'İstisna Sebepler ile Veri İşleme',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kişisel Verilerin Millî Savunmayı, Millî Güvenliği, Kamu Güvenliğini, Kamu Düzenini veya Ekonomik Güvenliği Sağlamaya Yönelik Olarak Kanunla Görev ve Yetki Verilmiş Kamu Kurum ve Kuruluşları Tarafından Yürütülen Önleyici, Koruyucu ve İstihbari Faaliyetler Kapsamında İşlenmesi',
+                'description' => 'İstisna Sebepler ile Veri İşleme',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kişisel Verilerin Soruşturma, Kovuşturma, Yargılama veya İnfaz İşlemlerine İlişkin Olarak Yargı Makamları veya İnfaz Mercileri Tarafından İşlenmesi',
+                'description' => 'İstisna Sebepler ile Veri İşleme',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kişisel Veri İşlemenin Suç İşlenmesinin Önlenmesi veya Suç Soruşturması İçin Gerekli Olması',
+                'description' => 'İstisna Sebepler ile Veri İşleme',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'İlgili Kişinin Kendisi Tarafından Alenileştirilmiş Kişisel Verilerin İşlenmesi',
+                'description' => 'İstisna Sebepler ile Veri İşleme',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kişisel Veri İşlemenin Kanunun Verdiği Yetkiye Dayanılarak Görevli ve Yetkili Kamu Kurum ve Kuruluşları ile Kamu Kurumu Niteliğindeki Meslek Kuruluşlarınca, Denetleme veya Düzenleme Görevlerinin Yürütülmesi ile Disiplin Soruşturma veya Kovuşturması İçin Gerekli Olması',
+                'description' => 'İstisna Sebepler ile Veri İşleme',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Kişisel Veri İşlemenin Bütçe, Vergi ve Mali Konulara İlişkin Olarak Devletin Ekonomik ve Mali Çıkarlarının Korunması İçin Gerekli Olması',
+                'description' => 'İstisna Sebepler ile Veri İşleme',
+                'is_active' => true,
+            ],
+        ];

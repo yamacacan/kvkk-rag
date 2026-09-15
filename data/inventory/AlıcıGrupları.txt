@@ -1,0 +1,51 @@
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $groups = [
+            [
+                'name' => 'Gerçek kişiler veya özel hukuk tüzel kişileri',
+                'description' => 'Gerçek kişiler veya özel hukuk tüzel kişileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Herkese açık',
+                'description' => 'Herkese açık alıcı grubu',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Hissedarlar',
+                'description' => 'Şirket hissedarları',
+                'is_active' => true
+            ],
+            [
+                'name' => 'İş Ortakları',
+                'description' => 'Şirket iş ortakları',
+                'is_active' => true
+            ],
+            [
+                'name' => 'İştirakler ve bağlı ortaklıklar',
+                'description' => 'İştirakler ve bağlı ortaklıklar',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Tedarikçiler',
+                'description' => 'Şirket tedarikçileri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Topluluk Şirketleri',
+                'description' => 'Topluluk şirketleri',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Yetkili Kamu Kurum ve Kuruluşları',
+                'description' => 'Yetkili kamu kurum ve kuruluşları',
+                'is_active' => true
+            ],
+            [
+                'name' => 'Yurt Dışı',
+                'description' => 'Yurt dışı alıcı grubu',
+                'is_active' => true
+            ]
+        ];

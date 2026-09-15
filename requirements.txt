@@ -1,0 +1,39 @@
+# torch / torchvision taban imajdan gelir (pytorch:2.5.1-cuda12.1-cudnn9-runtime)
+
+# --- ingest / parsing ---
+requests==2.32.3
+beautifulsoup4==4.12.3
+lxml==5.3.0
+pypdf==6.18.1
+pymupdf==1.25.1
+openpyxl==3.1.5
+python-docx==1.1.2
+PyYAML==6.0.2
+
+# --- embedding / chunking ---
+sentence-transformers==3.3.1
+transformers==4.47.1
+
+# --- index ---
+lancedb==0.17.0
+pyarrow==18.1.0
+
+# --- retrieval degerlendirme ---
+rank-bm25==0.2.2
+
+# --- graf (Faz 2) ---
+networkx==3.4.2
+
+# --- LLM adaptorleri ---
+google-generativeai==0.8.3
+anthropic==0.42.0
+ollama==0.4.4
+
+# --- API (Faz 2) ---
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+strawberry-graphql[fastapi]==0.327.7
+
+# --- yardimci ---
+tqdm==4.67.1
+python-dotenv==1.0.1

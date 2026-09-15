@@ -1,0 +1,79 @@
+services:
+  app:
+    build: .
+    image: kvkk-rag:dev
+    container_name: kvkk-rag-app
+    env_file: [.env]
+    environment:
+      KVKK_DATA_DIR: /app/data
+      KVKK_LLM_PROVIDER: ${KVKK_LLM_PROVIDER:-gemini}
+      OLLAMA_HOST: http://ollama:11434
+    volumes:
+      # Korpus ve indeks imaja gomulmez; host'ta kalir, konteyner okur/yazar.
+      - ./data:/app/data
+      # Canli kod: imaji yeniden derlemeden degisiklikler gecerli olsun
+      - ./kvkk_rag:/app/kvkk_rag
+      - ./scripts:/app/scripts
+      # LanceDB ve SQLite Windows bind-mount uzerinde yazamiyor; indeks native
+      # volume'de durur. Turetilmis cikti oldugu icin host'ta gorunmesi gerekmiyor.
+      - kvkk-index:/app/data/index
+      # Indirilen HF modelleri kalici olsun (her calistirmada yeniden inmesin).
+      - hf-models:/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    stdin_open: true
+    tty: true
+
+  # Lokal LLM. 6 GB VRAM'de embedding ile ayni anda calistirmak riskli; "".         
+  # bu yuzden ayri profilde: docker compose --profile local up
+  ollama:
+    image: ollama/ollama:latest
+    container_name: kvkk-rag-ollama
+    profiles: ["local"]
+    ports: ["11434:11434"]
+    volumes:
+      - ollama-models:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  # Faz 2'de acilir: GraphQL + REST
+  api:
+    build: .
+    image: kvkk-rag:dev
+    container_name: kvkk-rag-api
+    profiles: ["api"]
+    env_file: [.env]
+    environment:
+      KVKK_DATA_DIR: /app/data
+      OLLAMA_HOST: http://ollama:11434
+    command: uvicorn kvkk_rag.api.server:app --host 0.0.0.0 --port 8000
+    ports: ["8000:8000"]
+    volumes:
+      - ./data:/app/data
+      - ./kvkk_rag:/app/kvkk_rag
+      - ./scripts:/app/scripts
+      - ./web:/app/web
+      - kvkk-index:/app/data/index
+      - hf-models:/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+volumes:
+  hf-models:
+  ollama-models:
+  kvkk-index:

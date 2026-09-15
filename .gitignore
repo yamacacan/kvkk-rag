@@ -1,0 +1,36 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+models/
+*.log
+
+# --- Veri: depoda tutulmaz ---
+# Ham korpus, akademik kaynaklar ve turetilmis ciktilar (indeks, chunk) buyuk ve
+# yeniden uretilebilir. Kurum envanteri ve sablonlar kuruma ozeldir.
+data/raw/
+data/academic/
+data/processed/
+data/index/
+data/templates/
+data/inventory/veri_envanteri.xlsx
+data/inventory/audit_report.json
+data/_uretilen_*.docx
+data/Yeni klasör/
+
+# --- Tek seferlik araclar: urunun parcasi degil ---
+scripts/scrape_kvkk.py
+scripts/reorganize_data.py
+scripts/fix_db_categories.py
+scripts/fix_politika_sablonu.py
+scripts/eval_authority_weight.py
+scripts/render_diagrams.py
+scripts/_*.log
+
+# --- Calisma notlari ---
+docs/HANDOFF.md
+
+# --- Uretilmis ornekler ve calisma dosyalari ---
+ornek_belgeler/
+veri_envanteri_ornek.xlsx
+scripts/_*

@@ -1,0 +1,71 @@
+flowchart TB
+    subgraph CLIENTS["Clients"]
+        WEBUI["Web UI\napp.js / belgeler.js"]
+        PLAYGROUND["GraphQL\nPlayground"]
+        CURL["cURL / Postman"]
+    end
+
+    subgraph FASTAPI["FastAPI Server"]
+        direction TB
+        REST_EP["REST Endpoints\n/api/ask\n/api/health\n/api/sources\n/api/inventory\n/api/compliance"]
+        GQL_ROUTER["GraphQL Router\n/graphql"]
+    end
+
+    subgraph GQL_SCHEMA["Strawberry GraphQL Schema"]
+        direction TB
+        Q_ENV["envanter\nbirim, faaliyet,\nveri_kategorisi, ..."]
+        Q_OZET["denetim_ozeti"]
+        Q_RISK["faaliyet_riski"]
+        Q_MEV["mevzuat_ara\nsoru, limit"]
+        Q_MADDE["madde_etkisi\nmadde_no"]
+        Q_GRAF["graf_ozeti"]
+    end
+
+    subgraph BACKEND["Backend Modules"]
+        INV_MOD["inventory/\nloader audit\nsuggest taxonomy"]
+        HYBRID_MOD["retrieval/\nhybrid rerank"]
+        GRAPH_MOD["graph/\nschema query build"]
+        COMP_MOD["compliance/\ngenerate profile\nsections store"]
+        LLM_MOD["llm/\nfactory prompts"]
+    end
+
+    subgraph STORES["Data Stores"]
+        LANCE_S[("LanceDB\nvectors")]
+        SQLITE_S[("SQLite\nFTS5 + Graph")]
+        XLSX[("Excel\nveri_envanteri.xlsx")]
+    end
+
+    WEBUI --> REST_EP
+    WEBUI --> GQL_ROUTER
+    PLAYGROUND --> GQL_ROUTER
+    CURL --> REST_EP
+
+    GQL_ROUTER --> Q_ENV
+    GQL_ROUTER --> Q_OZET
+    GQL_ROUTER --> Q_RISK
+    GQL_ROUTER --> Q_MEV
+    GQL_ROUTER --> Q_MADDE
+    GQL_ROUTER --> Q_GRAF
+
+    Q_ENV --> INV_MOD
+    Q_OZET --> INV_MOD
+    Q_RISK --> GRAPH_MOD
+    Q_MEV --> HYBRID_MOD
+    Q_MADDE --> GRAPH_MOD
+    Q_GRAF --> GRAPH_MOD
+
+    REST_EP --> HYBRID_MOD
+    REST_EP --> LLM_MOD
+    REST_EP --> COMP_MOD
+    REST_EP --> INV_MOD
+
+    INV_MOD --> XLSX
+    HYBRID_MOD --> LANCE_S
+    HYBRID_MOD --> SQLITE_S
+    GRAPH_MOD --> SQLITE_S
+
+    style CLIENTS fill:#1a1a2e,stroke:#16213e,color:#e8e8e8
+    style FASTAPI fill:#0f3460,stroke:#16213e,color:#e8e8e8
+    style GQL_SCHEMA fill:#533483,stroke:#6c3483,color:#e8e8e8
+    style BACKEND fill:#162447,stroke:#1f4068,color:#e8e8e8
+    style STORES fill:#0a0a0a,stroke:#333,color:#aaa

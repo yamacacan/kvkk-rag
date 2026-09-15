@@ -1,0 +1,34 @@
+flowchart LR
+    Q["User Query"] --> ENCODE["Bi-Encoder\ne5-base @512\nquery: ..."]
+
+    ENCODE --> DENSE_S["Dense Search\nLanceDB\ncosine similarity\ntop-40 children"]
+    ENCODE --> BM25_S["BM25 Search\nFTS5\ntoken overlap\ntop-40 children"]
+
+    DENSE_S --> CHILD_MAP_D["Child to Parent\nDedup"]
+    BM25_S --> CHILD_MAP_L["Child to Parent\nDedup"]
+
+    subgraph MANDATORY["Mandatory Source Pass"]
+        MAND_D["Dense top-10\nWHERE binding = zorunlu"]
+        MAND_L["Lexical top-10\nWHERE binding = zorunlu"]
+    end
+
+    ENCODE --> MAND_D
+    ENCODE --> MAND_L
+
+    CHILD_MAP_D --> RRF_FUSE
+    CHILD_MAP_L --> RRF_FUSE
+    MAND_D --> RRF_FUSE
+    MAND_L --> RRF_FUSE
+
+    RRF_FUSE["RRF Fusion\nscore = S 1/60+rank_i"] --> AUTH_W["Authority Weighting\nscore x 1+w auth-1 /4\nw = 2.0"]
+
+    AUTH_W --> CE_RERANK["Cross-Encoder Reranking\nbge-reranker-v2-m3\ntop-80 candidates\nIdentity activation\nmin-max normalize"]
+
+    CE_RERANK --> FINAL["Final 12 Parents\nR@10 = 0.77\nMRR = 0.657\n0 ungrounded"]
+
+    style Q fill:#e94560,stroke:#333,color:#fff
+    style RRF_FUSE fill:#0f3460,stroke:#16213e,color:#fff
+    style AUTH_W fill:#533483,stroke:#333,color:#fff
+    style CE_RERANK fill:#e94560,stroke:#333,color:#fff
+    style FINAL fill:#2d6a4f,stroke:#333,color:#fff
+    style MANDATORY fill:#1a1a2e,stroke:#533483,color:#e8e8e8

@@ -1,0 +1,109 @@
+{
+  "aciklama": "KVKK retrieval altin seti. Her sorunun dogru kaynagi korpusta dogrulanabilir. tip=kavramsal: kullanici gundelik dille sorar, mevzuat resmi terim kullanir (literaturdeki 'vocabulary gap'). tip=referansli: sorguda madde/karar numarasi gecer (leksik eslesme testi).",
+  "sorular": [
+    {"id": "Q01", "soru": "Müşterimin telefon numarasını rızasını almadan sistemime kaydedebilir miyim?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "5"}], "tip": "kavramsal", "zorluk": "kolay"},
+
+    {"id": "Q02", "soru": "Çalışanlarımın sağlık raporlarını özlük dosyasında tutmak için ne gerekiyor?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "6"}], "tip": "kavramsal", "zorluk": "orta"},
+
+    {"id": "Q03", "soru": "İşyerine giriş çıkışta parmak izi okutma sistemi kurabilir miyim?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "6"}], "tip": "kavramsal", "zorluk": "zor"},
+
+    {"id": "Q04", "soru": "Artık ihtiyacım olmayan müşteri kayıtlarını nasıl silmem gerekir?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "7"}], "tip": "kavramsal", "zorluk": "kolay"},
+
+    {"id": "Q05", "soru": "Verileri yurt dışındaki bir bulut sağlayıcısında saklayabilir miyim?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "9"}], "tip": "kavramsal", "zorluk": "orta"},
+
+    {"id": "Q06", "soru": "Müşterilerime veri işlediğimi nasıl bildirmem gerekiyor?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "10"}], "tip": "kavramsal", "zorluk": "kolay"},
+
+    {"id": "Q07", "soru": "Bir kişi benden verilerinin silinmesini isterse hangi haklara sahiptir?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "11"}], "tip": "kavramsal", "zorluk": "kolay"},
+
+    {"id": "Q08", "soru": "Veri güvenliği için hangi tedbirleri almak zorundayım?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "12"}], "tip": "kavramsal", "zorluk": "kolay"},
+
+    {"id": "Q09", "soru": "Bana gelen bir başvuruyu kaç gün içinde cevaplamam gerekiyor?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "13"}], "tip": "kavramsal", "zorluk": "orta"},
+
+    {"id": "Q10", "soru": "Cevabımdan memnun kalmayan kişi nereye şikayet edebilir?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "14"}], "tip": "kavramsal", "zorluk": "orta"},
+
+    {"id": "Q11", "soru": "Şirketimi VERBİS'e kaydettirmek zorunda mıyım?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "16"}], "tip": "kavramsal", "zorluk": "orta"},
+
+    {"id": "Q12", "soru": "Kişisel verileri hukuka aykırı ele geçirmenin cezası nedir?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "17"}], "tip": "kavramsal", "zorluk": "orta"},
+
+    {"id": "Q13", "soru": "Aydınlatma yükümlülüğünü yerine getirmezsem ne kadar idari para cezası öderim?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "18"}], "tip": "kavramsal", "zorluk": "orta"},
+
+    {"id": "Q14", "soru": "Kanun hangi durumlarda hiç uygulanmaz?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "28"}], "tip": "kavramsal", "zorluk": "zor"},
+
+    {"id": "Q15", "soru": "Açık rıza tam olarak ne anlama geliyor?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "3"}], "tip": "kavramsal", "zorluk": "kolay"},
+
+    {"id": "Q16", "soru": "Veri sorumlusu ile veri işleyen arasındaki fark nedir?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "3"}], "tip": "kavramsal", "zorluk": "orta"},
+
+    {"id": "Q17", "soru": "Kişisel verilerin işlenmesinde uyulması gereken temel ilkeler nelerdir?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "4"}], "tip": "kavramsal", "zorluk": "kolay"},
+
+    {"id": "Q18", "soru": "Kurul kaç üyeden oluşur ve üyeler nasıl seçilir?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "21"}], "tip": "kavramsal", "zorluk": "orta"},
+
+    {"id": "Q19", "soru": "Periyodik imha işlemini hangi aralıklarla yapmam gerekiyor?",
+     "altin": [{"kaynak_turu": "yonetmelik", "belge_iceren": "Silinmesi"}], "tip": "kavramsal", "zorluk": "zor"},
+
+    {"id": "Q20", "soru": "Kişisel veri saklama ve imha politikası hazırlamak zorunda mıyım?",
+     "altin": [{"kaynak_turu": "yonetmelik", "belge_iceren": "Silinmesi"}], "tip": "kavramsal", "zorluk": "orta"},
+
+    {"id": "Q21", "soru": "Verileri anonim hale getirmenin kabul edilen yöntemleri nelerdir?",
+     "altin": [{"kaynak_turu": "yonetmelik", "belge_iceren": "Silinmesi"}], "tip": "kavramsal", "zorluk": "zor"},
+
+    {"id": "Q22", "soru": "Aydınlatma metninde hangi bilgilerin bulunması zorunlu?",
+     "altin": [{"kaynak_turu": "teblig", "belge_iceren": "Aydınlatma"}], "tip": "kavramsal", "zorluk": "orta"},
+
+    {"id": "Q23", "soru": "İlgili kişi bana başvurusunu hangi yollarla iletebilir?",
+     "altin": [{"kaynak_turu": "teblig", "belge_iceren": "20180310-6"}], "tip": "kavramsal", "zorluk": "zor"},
+
+    {"id": "Q24", "soru": "Sicile kayıt yükümlülüğünden kimler muaf tutulmuştur?",
+     "altin": [{"kaynak_turu": "yonetmelik", "belge_iceren": "Sicili"}], "tip": "kavramsal", "zorluk": "orta"},
+
+    {"id": "Q25", "soru": "Ödeme sırasında gönderdiğim SMS doğrulama kodunu reklam izni almak için kullanabilir miyim?",
+     "altin": [{"karar_no": "2025/1072"}], "tip": "kavramsal", "zorluk": "zor"},
+
+    {"id": "Q26", "soru": "Banko ve gişelerde sıradaki müşterinin önceki kişinin bilgilerini görmesini nasıl engellerim?",
+     "altin": [{"karar_no": "2017/62"}], "tip": "kavramsal", "zorluk": "zor"},
+
+    {"id": "Q27", "soru": "İnternette doktor ve avukat gibi kişilerin bilgilerini listeleyen bir rehber sitesi kurabilir miyim?",
+     "altin": [{"karar_no": "2017/61"}], "tip": "kavramsal", "zorluk": "zor"},
+
+    {"id": "Q28", "soru": "Çalışanım yetkisi olduğu sisteme girip görevi dışındaki verilere bakarsa sorumluluk kimde?",
+     "altin": [{"karar_no": "2018/63"}], "tip": "kavramsal", "zorluk": "zor"},
+
+    {"id": "Q29", "soru": "Müşterilerime e-posta ve SMS ile reklam göndermek için ne yapmalıyım?",
+     "altin": [{"karar_no": "2018/119"}], "tip": "kavramsal", "zorluk": "zor"},
+
+    {"id": "Q30", "soru": "Belediyeler vatandaşın borcunu sadece TC kimlik numarasıyla sorgulatabilir mi?",
+     "altin": [{"karar_no": "2022/388"}], "tip": "kavramsal", "zorluk": "zor"},
+
+    {"id": "Q31", "soru": "6698 sayılı Kanunun 12 nci maddesi ne düzenliyor?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "12"}], "tip": "referansli", "zorluk": "kolay"},
+
+    {"id": "Q32", "soru": "2025/1072 sayılı ilke kararının içeriği nedir?",
+     "altin": [{"karar_no": "2025/1072"}], "tip": "referansli", "zorluk": "kolay"},
+
+    {"id": "Q33", "soru": "Kanunun 6 ncı maddesinin üçüncü fıkrası neyi düzenler?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "6"}], "tip": "referansli", "zorluk": "kolay"},
+
+    {"id": "Q34", "soru": "2017/62 sayılı Kurul kararı hangi konuda?",
+     "altin": [{"karar_no": "2017/62"}], "tip": "referansli", "zorluk": "kolay"},
+
+    {"id": "Q35", "soru": "KVKK madde 11 hangi hakları sayıyor?",
+     "altin": [{"kaynak_turu": "kanun", "madde_no": "11"}], "tip": "referansli", "zorluk": "kolay"}
+  ]
+}

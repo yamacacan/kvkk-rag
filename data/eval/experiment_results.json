@@ -1,0 +1,488 @@
+{
+  "recursive | berturk-sts@75 | dense": {
+    "n": 35,
+    "recall@1": 0.02857142857142857,
+    "recall@3": 0.11428571428571428,
+    "recall@5": 0.11428571428571428,
+    "recall@10": 0.17142857142857143,
+    "mrr": 0.0783673469387755,
+    "ndcg": 0.10043392629615983,
+    "bulunamayan": 29,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.13333333333333333,
+      "referansli": 0.0
+    },
+    "embed_sec": 16.7,
+    "query_ms": 28.5,
+    "n_child": 5066,
+    "medyan_krk": 970
+  },
+  "recursive | berturk-sts@75 | bm25": {
+    "n": 35,
+    "recall@1": 0.14285714285714285,
+    "recall@3": 0.2,
+    "recall@5": 0.22857142857142856,
+    "recall@10": 0.2571428571428571,
+    "mrr": 0.18122448979591838,
+    "ndcg": 0.1994870185060226,
+    "bulunamayan": 26,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.23333333333333334,
+      "referansli": 0.2
+    },
+    "embed_sec": 16.7,
+    "query_ms": 28.5,
+    "n_child": 5066,
+    "medyan_krk": 970
+  },
+  "recursive | berturk-sts@75 | hybrid": {
+    "n": 35,
+    "recall@1": 0.08571428571428572,
+    "recall@3": 0.2,
+    "recall@5": 0.22857142857142856,
+    "recall@10": 0.22857142857142856,
+    "mrr": 0.14523809523809522,
+    "ndcg": 0.16638473767965045,
+    "bulunamayan": 27,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.23333333333333334,
+      "referansli": 0.2
+    },
+    "embed_sec": 16.7,
+    "query_ms": 28.5,
+    "n_child": 5066,
+    "medyan_krk": 970
+  },
+  "recursive | berturk-sts@512 | dense": {
+    "n": 35,
+    "recall@1": 0.02857142857142857,
+    "recall@3": 0.14285714285714285,
+    "recall@5": 0.14285714285714285,
+    "recall@10": 0.22857142857142856,
+    "mrr": 0.08809523809523809,
+    "ndcg": 0.12139989850921129,
+    "bulunamayan": 27,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.16666666666666666,
+      "referansli": 0.0
+    },
+    "embed_sec": 40.3,
+    "query_ms": 38.5,
+    "n_child": 5066,
+    "medyan_krk": 970
+  },
+  "recursive | berturk-sts@512 | bm25": {
+    "n": 35,
+    "recall@1": 0.14285714285714285,
+    "recall@3": 0.2,
+    "recall@5": 0.22857142857142856,
+    "recall@10": 0.2571428571428571,
+    "mrr": 0.18122448979591838,
+    "ndcg": 0.1994870185060226,
+    "bulunamayan": 26,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.23333333333333334,
+      "referansli": 0.2
+    },
+    "embed_sec": 40.3,
+    "query_ms": 38.5,
+    "n_child": 5066,
+    "medyan_krk": 970
+  },
+  "recursive | berturk-sts@512 | hybrid": {
+    "n": 35,
+    "recall@1": 0.14285714285714285,
+    "recall@3": 0.22857142857142856,
+    "recall@5": 0.2571428571428571,
+    "recall@10": 0.2571428571428571,
+    "mrr": 0.18333333333333335,
+    "ndcg": 0.20176018033271,
+    "bulunamayan": 26,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.26666666666666666,
+      "referansli": 0.2
+    },
+    "embed_sec": 40.3,
+    "query_ms": 38.5,
+    "n_child": 5066,
+    "medyan_krk": 970
+  },
+  "recursive | e5-base@512 | dense": {
+    "n": 35,
+    "recall@1": 0.2,
+    "recall@3": 0.22857142857142856,
+    "recall@5": 0.2857142857142857,
+    "recall@10": 0.3142857142857143,
+    "mrr": 0.23142857142857143,
+    "ndcg": 0.2508956484581752,
+    "bulunamayan": 24,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.3,
+      "referansli": 0.2
+    },
+    "embed_sec": 50.1,
+    "query_ms": 33.3,
+    "n_child": 5066,
+    "medyan_krk": 970
+  },
+  "recursive | e5-base@512 | bm25": {
+    "n": 35,
+    "recall@1": 0.14285714285714285,
+    "recall@3": 0.2,
+    "recall@5": 0.22857142857142856,
+    "recall@10": 0.2571428571428571,
+    "mrr": 0.18122448979591838,
+    "ndcg": 0.1994870185060226,
+    "bulunamayan": 26,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.23333333333333334,
+      "referansli": 0.2
+    },
+    "embed_sec": 50.1,
+    "query_ms": 33.3,
+    "n_child": 5066,
+    "medyan_krk": 970
+  },
+  "recursive | e5-base@512 | hybrid": {
+    "n": 35,
+    "recall@1": 0.2,
+    "recall@3": 0.2571428571428571,
+    "recall@5": 0.2571428571428571,
+    "recall@10": 0.2857142857142857,
+    "mrr": 0.2333333333333333,
+    "ndcg": 0.24623047697859823,
+    "bulunamayan": 25,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.26666666666666666,
+      "referansli": 0.2
+    },
+    "embed_sec": 50.1,
+    "query_ms": 33.3,
+    "n_child": 5066,
+    "medyan_krk": 970
+  },
+  "recursive+prefix | berturk-sts@75 | dense": {
+    "n": 35,
+    "recall@1": 0.14285714285714285,
+    "recall@3": 0.14285714285714285,
+    "recall@5": 0.17142857142857143,
+    "recall@10": 0.22857142857142856,
+    "mrr": 0.15642857142857142,
+    "ndcg": 0.1724344646050574,
+    "bulunamayan": 27,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.2,
+      "referansli": 0.0
+    },
+    "embed_sec": 16.5,
+    "query_ms": 38.5,
+    "n_child": 5066,
+    "medyan_krk": 1060
+  },
+  "recursive+prefix | berturk-sts@75 | bm25": {
+    "n": 35,
+    "recall@1": 0.17142857142857143,
+    "recall@3": 0.2571428571428571,
+    "recall@5": 0.2571428571428571,
+    "recall@10": 0.2857142857142857,
+    "mrr": 0.21238095238095236,
+    "ndcg": 0.2300264095274515,
+    "bulunamayan": 25,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.23333333333333334,
+      "referansli": 0.4
+    },
+    "embed_sec": 16.5,
+    "query_ms": 38.5,
+    "n_child": 5066,
+    "medyan_krk": 1060
+  },
+  "recursive+prefix | berturk-sts@75 | hybrid": {
+    "n": 35,
+    "recall@1": 0.11428571428571428,
+    "recall@3": 0.2571428571428571,
+    "recall@5": 0.2571428571428571,
+    "recall@10": 0.3142857142857143,
+    "mrr": 0.17499999999999996,
+    "ndcg": 0.2086457662132917,
+    "bulunamayan": 24,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.26666666666666666,
+      "referansli": 0.2
+    },
+    "embed_sec": 16.5,
+    "query_ms": 38.5,
+    "n_child": 5066,
+    "medyan_krk": 1060
+  },
+  "recursive+prefix | berturk-sts@512 | dense": {
+    "n": 35,
+    "recall@1": 0.08571428571428572,
+    "recall@3": 0.14285714285714285,
+    "recall@5": 0.22857142857142856,
+    "recall@10": 0.2857142857142857,
+    "mrr": 0.13412698412698412,
+    "ndcg": 0.1699790530569195,
+    "bulunamayan": 25,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.26666666666666666,
+      "referansli": 0.0
+    },
+    "embed_sec": 48.3,
+    "query_ms": 45.0,
+    "n_child": 5066,
+    "medyan_krk": 1060
+  },
+  "recursive+prefix | berturk-sts@512 | bm25": {
+    "n": 35,
+    "recall@1": 0.17142857142857143,
+    "recall@3": 0.2571428571428571,
+    "recall@5": 0.2571428571428571,
+    "recall@10": 0.2857142857142857,
+    "mrr": 0.21238095238095236,
+    "ndcg": 0.2300264095274515,
+    "bulunamayan": 25,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.23333333333333334,
+      "referansli": 0.4
+    },
+    "embed_sec": 48.3,
+    "query_ms": 45.0,
+    "n_child": 5066,
+    "medyan_krk": 1060
+  },
+  "recursive+prefix | berturk-sts@512 | hybrid": {
+    "n": 35,
+    "recall@1": 0.14285714285714285,
+    "recall@3": 0.2,
+    "recall@5": 0.2571428571428571,
+    "recall@10": 0.34285714285714286,
+    "mrr": 0.19003401360544217,
+    "ndcg": 0.22532349015189548,
+    "bulunamayan": 23,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.26666666666666666,
+      "referansli": 0.2
+    },
+    "embed_sec": 48.3,
+    "query_ms": 45.0,
+    "n_child": 5066,
+    "medyan_krk": 1060
+  },
+  "recursive+prefix | e5-base@512 | dense": {
+    "n": 35,
+    "recall@1": 0.22857142857142856,
+    "recall@3": 0.2571428571428571,
+    "recall@5": 0.2571428571428571,
+    "recall@10": 0.3142857142857143,
+    "mrr": 0.2488888888888889,
+    "ndcg": 0.2634578450158093,
+    "bulunamayan": 24,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.26666666666666666,
+      "referansli": 0.2
+    },
+    "embed_sec": 56.2,
+    "query_ms": 33.4,
+    "n_child": 5066,
+    "medyan_krk": 1060
+  },
+  "recursive+prefix | e5-base@512 | bm25": {
+    "n": 35,
+    "recall@1": 0.17142857142857143,
+    "recall@3": 0.2571428571428571,
+    "recall@5": 0.2571428571428571,
+    "recall@10": 0.2857142857142857,
+    "mrr": 0.21238095238095236,
+    "ndcg": 0.2300264095274515,
+    "bulunamayan": 25,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.23333333333333334,
+      "referansli": 0.4
+    },
+    "embed_sec": 56.2,
+    "query_ms": 33.4,
+    "n_child": 5066,
+    "medyan_krk": 1060
+  },
+  "recursive+prefix | e5-base@512 | hybrid": {
+    "n": 35,
+    "recall@1": 0.22857142857142856,
+    "recall@3": 0.2571428571428571,
+    "recall@5": 0.2857142857142857,
+    "recall@10": 0.34285714285714286,
+    "mrr": 0.2563492063492063,
+    "ndcg": 0.276104751513509,
+    "bulunamayan": 23,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.3,
+      "referansli": 0.2
+    },
+    "embed_sec": 56.2,
+    "query_ms": 33.4,
+    "n_child": 5066,
+    "medyan_krk": 1060
+  },
+  "structural+semantic | berturk-sts@75 | dense": {
+    "n": 35,
+    "recall@1": 0.08571428571428572,
+    "recall@3": 0.2,
+    "recall@5": 0.2571428571428571,
+    "recall@10": 0.45714285714285713,
+    "mrr": 0.17156462585034016,
+    "ndcg": 0.23723529413397512,
+    "bulunamayan": 19,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.26666666666666666,
+      "referansli": 0.2
+    },
+    "embed_sec": 14.4,
+    "query_ms": 39.4,
+    "n_child": 4350,
+    "medyan_krk": 1033
+  },
+  "structural+semantic | berturk-sts@75 | bm25": {
+    "n": 35,
+    "recall@1": 0.14285714285714285,
+    "recall@3": 0.2571428571428571,
+    "recall@5": 0.2857142857142857,
+    "recall@10": 0.34285714285714286,
+    "mrr": 0.20888888888888887,
+    "ndcg": 0.24105369287774053,
+    "bulunamayan": 23,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.26666666666666666,
+      "referansli": 0.4
+    },
+    "embed_sec": 14.4,
+    "query_ms": 39.4,
+    "n_child": 4350,
+    "medyan_krk": 1033
+  },
+  "structural+semantic | berturk-sts@75 | hybrid": {
+    "n": 35,
+    "recall@1": 0.22857142857142856,
+    "recall@3": 0.37142857142857144,
+    "recall@5": 0.37142857142857144,
+    "recall@10": 0.4857142857142857,
+    "mrr": 0.30484126984126986,
+    "ndcg": 0.3472730327597141,
+    "bulunamayan": 18,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.3333333333333333,
+      "referansli": 0.6
+    },
+    "embed_sec": 14.4,
+    "query_ms": 39.4,
+    "n_child": 4350,
+    "medyan_krk": 1033
+  },
+  "structural+semantic | berturk-sts@512 | dense": {
+    "n": 35,
+    "recall@1": 0.14285714285714285,
+    "recall@3": 0.22857142857142856,
+    "recall@5": 0.2857142857142857,
+    "recall@10": 0.4,
+    "mrr": 0.20939909297052153,
+    "ndcg": 0.2538692647240547,
+    "bulunamayan": 21,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.3,
+      "referansli": 0.2
+    },
+    "embed_sec": 39.0,
+    "query_ms": 38.1,
+    "n_child": 4350,
+    "medyan_krk": 1033
+  },
+  "structural+semantic | berturk-sts@512 | bm25": {
+    "n": 35,
+    "recall@1": 0.14285714285714285,
+    "recall@3": 0.2571428571428571,
+    "recall@5": 0.2857142857142857,
+    "recall@10": 0.34285714285714286,
+    "mrr": 0.20888888888888887,
+    "ndcg": 0.24105369287774053,
+    "bulunamayan": 23,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.26666666666666666,
+      "referansli": 0.4
+    },
+    "embed_sec": 39.0,
+    "query_ms": 38.1,
+    "n_child": 4350,
+    "medyan_krk": 1033
+  },
+  "structural+semantic | berturk-sts@512 | hybrid": {
+    "n": 35,
+    "recall@1": 0.17142857142857143,
+    "recall@3": 0.2857142857142857,
+    "recall@5": 0.3142857142857143,
+    "recall@10": 0.42857142857142855,
+    "mrr": 0.24670068027210884,
+    "ndcg": 0.28973870435097204,
+    "bulunamayan": 20,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.3,
+      "referansli": 0.4
+    },
+    "embed_sec": 39.0,
+    "query_ms": 38.1,
+    "n_child": 4350,
+    "medyan_krk": 1033
+  },
+  "structural+semantic | e5-base@512 | dense": {
+    "n": 35,
+    "recall@1": 0.2571428571428571,
+    "recall@3": 0.37142857142857144,
+    "recall@5": 0.42857142857142855,
+    "recall@10": 0.4857142857142857,
+    "mrr": 0.32963718820861676,
+    "ndcg": 0.36699091300056064,
+    "bulunamayan": 18,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.4666666666666667,
+      "referansli": 0.2
+    },
+    "embed_sec": 46.1,
+    "query_ms": 58.0,
+    "n_child": 4350,
+    "medyan_krk": 1033
+  },
+  "structural+semantic | e5-base@512 | bm25": {
+    "n": 35,
+    "recall@1": 0.14285714285714285,
+    "recall@3": 0.2571428571428571,
+    "recall@5": 0.2857142857142857,
+    "recall@10": 0.34285714285714286,
+    "mrr": 0.20888888888888887,
+    "ndcg": 0.24105369287774053,
+    "bulunamayan": 23,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.26666666666666666,
+      "referansli": 0.4
+    },
+    "embed_sec": 46.1,
+    "query_ms": 58.0,
+    "n_child": 4350,
+    "medyan_krk": 1033
+  },
+  "structural+semantic | e5-base@512 | hybrid": {
+    "n": 35,
+    "recall@1": 0.2,
+    "recall@3": 0.34285714285714286,
+    "recall@5": 0.4,
+    "recall@10": 0.5142857142857142,
+    "mrr": 0.2915419501133787,
+    "ndcg": 0.3444884665495905,
+    "bulunamayan": 17,
+    "tip_bazli_recall@5": {
+      "kavramsal": 0.43333333333333335,
+      "referansli": 0.2
+    },
+    "embed_sec": 46.1,
+    "query_ms": 58.0,
+    "n_child": 4350,
+    "medyan_krk": 1033
+  }
+}

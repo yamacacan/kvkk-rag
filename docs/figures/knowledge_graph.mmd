@@ -1,0 +1,48 @@
+graph TB
+    MEVZUAT["Mevzuat\nLegislation"]
+    MADDE["Madde\nArticle"]
+    KARAR["Karar\nDecision"]
+    VKAT["VeriKategorisi\nData Category"]
+    HSEBEP["HukukiSebep\nLegal Basis"]
+    AMAC_N["IslemeAmaci\nProcessing Purpose"]
+    KGRUB["KisiGrubu\nData Subject Group"]
+    AGRUB["AliciGrubu\nRecipient Group"]
+    TTEDBIR["TeknikTedbir\nTechnical Measure"]
+    ITEDBIR["IdariTedbir\nAdmin Measure"]
+    BIRIM_N["Birim\nDepartment"]
+    FAALIYET_N["Faaliyet\nActivity"]
+    ENV["EnvanterSatiri\nInventory Row"]
+    BULGU_N["Bulgu\nFinding"]
+
+    MEVZUAT -->|HAS_PART| MADDE
+    KARAR -->|"CITES\nweight=confidence"| MADDE
+    HSEBEP -->|TANIMLI_MADDE| MADDE
+    VKAT -->|OZEL_NITELIKLI| MADDE
+
+    ENV -->|ICERIR| VKAT
+    ENV -->|DAYANAK| HSEBEP
+    ENV -->|AMAC| AMAC_N
+    ENV -->|ILGILI_KISI| KGRUB
+    ENV -->|AKTARIR| AGRUB
+    ENV -->|TEDBIR| TTEDBIR
+    ENV -->|TEDBIR| ITEDBIR
+    ENV -->|AIT_BIRIM| BIRIM_N
+    ENV -->|AIT_FAALIYET| FAALIYET_N
+
+    BULGU_N -->|BULGU_OF| ENV
+    BULGU_N -->|IHLAL_MADDE| MADDE
+
+    style MEVZUAT fill:#1a5276,stroke:#154360,color:#fff
+    style MADDE fill:#1a5276,stroke:#154360,color:#fff
+    style KARAR fill:#7d3c98,stroke:#6c3483,color:#fff
+    style VKAT fill:#c0392b,stroke:#a93226,color:#fff
+    style HSEBEP fill:#27ae60,stroke:#229954,color:#fff
+    style ENV fill:#e67e22,stroke:#d35400,color:#fff
+    style BULGU_N fill:#e74c3c,stroke:#c0392b,color:#fff
+    style AMAC_N fill:#2c3e50,stroke:#1a252f,color:#fff
+    style KGRUB fill:#2c3e50,stroke:#1a252f,color:#fff
+    style AGRUB fill:#2c3e50,stroke:#1a252f,color:#fff
+    style TTEDBIR fill:#2c3e50,stroke:#1a252f,color:#fff
+    style ITEDBIR fill:#2c3e50,stroke:#1a252f,color:#fff
+    style BIRIM_N fill:#2c3e50,stroke:#1a252f,color:#fff
+    style FAALIYET_N fill:#2c3e50,stroke:#1a252f,color:#fff

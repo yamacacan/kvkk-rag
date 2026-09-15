@@ -1,0 +1,32 @@
+flowchart TB
+    subgraph BROKEN["BROKEN: Double Sigmoid"]
+        B_INPUT["Raw Logits\n-10.97 ... -5.94"]
+        B_SIG1["Internal Sigmoid\nCrossEncoder.predict"]
+        B_SIG2["External Sigmoid\nour pipeline"]
+        B_OUTPUT["Compressed Scores\n~0.498 ... ~0.503\nnear-zero variance"]
+
+        B_INPUT --> B_SIG1 --> B_SIG2 --> B_OUTPUT
+    end
+
+    subgraph FIXED["FIXED: Identity + MinMax"]
+        F_INPUT["Raw Logits\n-10.97 ... -5.94"]
+        F_IDENTITY["Identity\nactivation_fct"]
+        F_MINMAX["Min-Max Normalize\nper candidate set"]
+        F_OUTPUT["Spread Scores\n0.00 ... 1.00\nfull discriminative power"]
+
+        F_INPUT --> F_IDENTITY --> F_MINMAX --> F_OUTPUT
+    end
+
+    subgraph EFFECT["Impact on Metrics"]
+        E_BROKEN["Broken w=1.0:\nR@5=0.77 MRR=0.657\nmisleading: authority\nis sole signal"]
+        E_FIXED_1["Fixed w=1.0:\nR@5=0.69 MRR=0.627\nCE dilutes authority"]
+        E_FIXED_2["Fixed w=2.0:\nR@5=0.71 MRR=0.657\nrecalibrated balance"]
+    end
+
+    B_OUTPUT --> E_BROKEN
+    F_OUTPUT --> E_FIXED_1
+    E_FIXED_1 -->|recalibrate w| E_FIXED_2
+
+    style BROKEN fill:#c0392b,stroke:#a93226,color:#fff
+    style FIXED fill:#27ae60,stroke:#229954,color:#fff
+    style EFFECT fill:#2c3e50,stroke:#1a252f,color:#fff

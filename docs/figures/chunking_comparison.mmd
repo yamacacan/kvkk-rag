@@ -1,0 +1,57 @@
+flowchart TB
+    DOC["Raw Document\nPDF / HTML"]
+
+    DOC --> ROUTE{"Document Type?"}
+
+    subgraph REC["Recursive Chunking - baseline"]
+        R1["Fixed 1000-char window\n200-char overlap"]
+        R2["Split on: newline newline\nnewline - period - space"]
+        R3["No structure awareness"]
+        R1 --> R2 --> R3
+    end
+
+    subgraph STRUCT["Structural + Semantic - proposed"]
+        direction TB
+        ROUTE2{"Has article\nmarkers?"}
+
+        subgraph LEG["Legislation Path"]
+            L1["Parse MADDE n regex"]
+            L2["Parent = Article"]
+            L3["Child = Numbered paragraph"]
+            L4["Recover article heading"]
+            L1 --> L2 --> L3 --> L4
+        end
+
+        subgraph DEC["Decision Path"]
+            D1["Merge paragraphs\n~700 char target"]
+            D2["Cosine similarity\nbetween consecutive units"]
+            D3["Break at 5th percentile"]
+            D4["Hard cap: 1300 chars"]
+            D1 --> D2 --> D3 --> D4
+        end
+
+        ROUTE2 -->|"Yes: kanun,\nyonetmelik"| LEG
+        ROUTE2 -->|"No: karar,\nrehber"| DEC
+    end
+
+    ROUTE -->|Any document| REC
+    ROUTE -->|Routed| ROUTE2
+
+    subgraph ENRICH["Provenance Enrichment"]
+        PREFIX["Add prefix:\nLaw 6698 Art. 5\nConditions for processing"]
+        INDEX["Index prefixed text\nin both dense + lexical"]
+        PREFIX --> INDEX
+    end
+
+    REC --> ENRICH
+    LEG --> ENRICH
+    DEC --> ENRICH
+
+    ENRICH --> EMB_STORE["Embed and Store\n4,359 child chunks\n509 parent units"]
+
+    style REC fill:#c0392b,stroke:#333,color:#fff
+    style STRUCT fill:#27ae60,stroke:#333,color:#fff
+    style LEG fill:#2d6a4f,stroke:#333,color:#fff
+    style DEC fill:#1b4332,stroke:#333,color:#fff
+    style ENRICH fill:#0f3460,stroke:#333,color:#fff
+    style EMB_STORE fill:#533483,stroke:#333,color:#fff

@@ -1,0 +1,83 @@
+flowchart LR
+    %% ====================================================================
+    %% Research & Experiment Focused Pipeline Architecture (No Web/UI)
+    %% ====================================================================
+
+    subgraph INPUT_STAGE["1. Query & Corpus Preparation"]
+        direction TB
+        QUERY["User Query\n(Conceptual / Referential)"]
+        
+        subgraph INGESTION["Corpus Ingestion (372 Documents)"]
+            direction TB
+            RAW_DOCS["Raw Legal Text\n(Laws, Regs, Decisions)"]
+            CHUNKER["Structure-Aware Chunking\n- Legislation: Regex (MADDE n)\n- Decisions: Cosine Breakpoints"]
+            PARENT_CHILD["Hierarchical Units\nParent: Full Article / Decision\nChild: Paragraph with Prefix"]
+            RAW_DOCS --> CHUNKER --> PARENT_CHILD
+        end
+    end
+
+    subgraph INDEX_STAGE["2. Dual-Representation Indexing"]
+        direction TB
+        BI_ENC["Bi-Encoder\nmultilingual-e5-base @512\n(Prefix: passage:)"]
+        DENSE_IDX[("Vector Index\nLanceDB\n4,359 Child Embeddings")]
+        BM25_IDX[("Lexical Index\nSQLite FTS5\nTokenized Chunks + Prefixes")]
+        
+        PARENT_CHILD -.-> BI_ENC --> DENSE_IDX
+        PARENT_CHILD -.-> BM25_IDX
+    end
+
+    subgraph RETRIEVAL_STAGE["3. Hybrid Retrieval & Scoring"]
+        direction TB
+        QUERY_ENC["Query Encoding\n(Prefix: query:)"]
+        
+        DENSE_SEARCH["Dense Search\nCosine Similarity\nTop-40 Children"]
+        BM25_SEARCH["Lexical Search\nBM25 Matching\nTop-40 Children"]
+        MAND_PASS["Mandatory Source Pass\nBinding Legislation\nTop-10 Guaranteed"]
+        
+        RRF_FUSION["Reciprocal Rank Fusion\nRRF(d) = sum 1 / (60 + rank_i)\nFused Pool"]
+        AUTH_WEIGHT["Authority Calibration\nScore x (1 + w x (auth-1)/4)\nw = 2.0 Multiplier"]
+
+        QUERY --> QUERY_ENC
+        QUERY_ENC --> DENSE_SEARCH
+        QUERY --> BM25_SEARCH
+        QUERY --> MAND_PASS
+        
+        DENSE_IDX --- DENSE_SEARCH
+        BM25_IDX --- BM25_SEARCH
+        
+        DENSE_SEARCH --> RRF_FUSION
+        BM25_SEARCH --> RRF_FUSION
+        MAND_PASS --> RRF_FUSION
+        RRF_FUSION --> AUTH_WEIGHT
+    end
+
+    subgraph RERANK_STAGE["4. Neural Reranking & Resolution"]
+        direction TB
+        CROSS_ENC["Cross-Encoder\nBAAI/bge-reranker-v2-m3\n(Raw Logits + Min-Max Norm)"]
+        RESOLVE["Parent Deduplication\nAggregate Children to\nTop-12 Complete Articles"]
+        
+        AUTH_WEIGHT -->|"Top-80 Candidates"| CROSS_ENC
+        CROSS_ENC --> RESOLVE
+    end
+
+    subgraph GEN_STAGE["5. Grounded Generation"]
+        direction TB
+        PROMPT["Context Assembly\n12 Grounded Parent Articles\n+ Legal Citation Prompt"]
+        LOCAL_LLM["Local LLM\nDeterministic Generation\nwith Exact Statutory Basis"]
+        ANSWER["Final Answer\nwith Article-Level Citations"]
+
+        RESOLVE --> PROMPT --> LOCAL_LLM --> ANSWER
+    end
+
+    %% Academic Clean Style
+    classDef inputStyle fill:#f8f9fa,stroke:#495057,stroke-width:1.5px,color:#212529;
+    classDef indexStyle fill:#e8f4f8,stroke:#17a2b8,stroke-width:1.5px,color:#0c5460;
+    classDef retStyle fill:#f3e8fd,stroke:#7b1fa2,stroke-width:1.5px,color:#311b92;
+    classDef rerankStyle fill:#fff3cd,stroke:#ffc107,stroke-width:1.5px,color:#856404;
+    classDef genStyle fill:#e6f4ea,stroke:#28a745,stroke-width:1.5px,color:#155724;
+
+    class INPUT_STAGE,QUERY,INGESTION,RAW_DOCS,CHUNKER,PARENT_CHILD inputStyle;
+    class INDEX_STAGE,BI_ENC,DENSE_IDX,BM25_IDX indexStyle;
+    class RETRIEVAL_STAGE,QUERY_ENC,DENSE_SEARCH,BM25_SEARCH,MAND_PASS,RRF_FUSION,AUTH_WEIGHT retStyle;
+    class RERANK_STAGE,CROSS_ENC,RESOLVE rerankStyle;
+    class GEN_STAGE,PROMPT,LOCAL_LLM,ANSWER genStyle;

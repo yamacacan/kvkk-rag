@@ -6,9 +6,14 @@ from typing import Any
 
 import numpy as np
 
+import os
+
 from ..config import settings
 from ..index import embedder, lexical_store, vector_store
 from . import rerank
+
+# Render veya dusuk bellekli ortam tespiti: agir modelleri atlar, dogrudan FTS5 BM25 calistirir
+LOW_MEMORY_MODE = os.getenv("KVKK_LOW_MEMORY", "1" if os.getenv("RENDER") else "0").lower() in ("1", "true", "yes")
 
 RRF_K = 60
 DENSE_TOPK = 40
@@ -70,6 +75,33 @@ def search(query: str, conn=None, limit: int = PARENT_LIMIT,
     own_conn = conn is None
     conn = conn or lexical_store.connect()
     try:
+        if LOW_MEMORY_MODE:
+            # 512MB RAM icin guvenli mod: agir PyTorch/e5 ve reranker modellerini atlar.
+            # Dogrudan SQLite FTS5 BM25 leksik arama motoru calisir (0 MB ekstra RAM).
+            lexical = lexical_store.search(conn, query, limit=limit * 3, level="child")
+            if not lexical:
+                lexical = lexical_store.search(conn, query, limit=limit * 3)
+            if not lexical:
+                return []
+
+            child_meta = lexical_store.get_by_id(conn, [h["chunk_id"] for h in lexical])
+            parents: dict[str, dict] = {}
+            for h in lexical:
+                meta = child_meta.get(h["chunk_id"]) or h
+                pid = meta.get("parent_id") or meta["chunk_id"]
+                if pid not in parents:
+                    parents[pid] = meta
+                if len(parents) >= limit:
+                    break
+
+            parent_rows = lexical_store.get_by_id(conn, list(parents.keys()))
+            out = []
+            for pid, child in parents.items():
+                row = parent_rows.get(pid) or child
+                out.append({**row, "score": 1.0, "rrf_score": 1.0, "ce_score": None,
+                            "eslesen_parca": child.get("text_raw", "")[:300]})
+            return out
+
         qvec = embedder.embed_query(query)
         dense = vector_store.search(qvec, limit=DENSE_TOPK, where=where)
         lexical = lexical_store.search(conn, query, limit=LEXICAL_TOPK, level="child")

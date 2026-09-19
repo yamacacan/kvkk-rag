@@ -12,7 +12,8 @@ __pycache__/
 data/raw/
 data/academic/
 data/processed/
-data/index/
+data/index/*
+!data/index/kvkk.db
 data/templates/
 data/inventory/veri_envanteri.xlsx
 data/inventory/audit_report.json

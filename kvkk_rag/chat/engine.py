@@ -133,7 +133,7 @@ def analiz_et(messages: list[Message], llm) -> Analiz:
 
 
 def _envanter_durumu(a: Analiz) -> tuple[list[dict[str, Any]], dict[str, Any] | None]:
-    if not a.envanter_ilgili or not a.kisisel_veri:
+    if not a.envanter_ilgili or not a.kisisel_veri or hybrid.LOW_MEMORY_MODE:
         return [], None
     try:
         birebir, benzer = inv_vector.benzer_kayitlar(a.kisisel_veri, a.birim or "", a.faaliyet or "")
@@ -318,6 +318,8 @@ def chat(messages: list[Message], provider: str | None = None,
 
         system = prompts.SYSTEM + CHAT_EK
         kaynaklar = "\n\n".join(prompts.format_source(i, r) for i, r in enumerate(rows, start=1))
+        if not kaynaklar:
+            kaynaklar = "Doğrudan mevzuat maddesi eşleşmesi bulunamadı. Lütfen 6698 sayılı KVKK Kanunu genel hükümleri, temel ilkeler ve Kurul kararları çerçevesinde soruyu kapsamlı ve maddelere atıfta bulunarak yanıtla."
         son_soru = _son_kullanici(messages)
         gecmis = [m for m in messages if m["role"] in ("user", "assistant")][-GECMIS_TUR:-1]
 

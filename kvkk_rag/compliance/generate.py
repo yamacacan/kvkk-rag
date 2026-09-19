@@ -25,10 +25,16 @@ BASLIK_ETIKET = {
 TEKRAR_GRUBU = {"kategori", "sure", "imha"}
 
 # Sabit yazilmis bolumleri envanterden/LLM'den uretilen sablonlar
-BOLUM_URETILEN = {"politika"}
+BOLUM_URETILEN = {"politika", "veri_ihlali"}
 
 # Profilden degil envanterden/LLM'den doldugu icin "eksik alan" sayilmaz
 URETILEN_PH = frozenset(sections.VERITABANI + sections.YAPAY_ZEKA)
+# Baska bir profil alanindan turetilir (qr_kod <- web_adres): doldurulacak alan degildir
+TURETILEN_PH = frozenset({"qr_kod"})
+# Degeri buyuk harfe cevrilen baslik placeholder'lari
+BUYUK_HARF = frozenset({"KURUM", "BIRIM", "ISLEME_AMACI"})
+# Faaliyet bazli belgelerde envanterden dolan (profil alani sayilmayan) placeholder'lar
+FAALIYET_PH = frozenset({"BIRIM", "birim", "ISLEME_AMACI", "kisisel_veriler", "alici_gruplari", "aktarim_yonu"})
 
 NUMPR = ("{http://schemas.openxmlformats.org/wordprocessingml/2006/main}numPr")
 
@@ -37,16 +43,25 @@ SABLONLAR = {
     "politika": "Kisisel_Veri_Politikasi_Sablon_Final.docx",
     "saklama_imha": "Saklama_İmha_Sablon.docx",
     "veri_isleyen": "Veri_Isleyen_Protokolu_Sablon.docx",
+    "veri_ihlali": "Veri_Ihlali_Mudahale_Proseduru_Sablon.docx",
+    "genel_aydinlatma": "Genel_Aydinlatma_Metni_Sablon.docx",
+    "basvuru_formu": "Basvuru_Formu_Sablon.docx",
+    "acik_riza": "Acik_Riza_Beyani_Sablon.docx",
 }
 
-# Aydinlatma metni her faaliyet icin ayri duzenlenir (KVKK m.10); digerleri kurum geneli.
-FAALIYET_BAZLI = {"aydinlatma"}
+# Aydinlatma metni ve acik riza beyani her faaliyet icin ayri duzenlenir (KVKK m.10, m.5/1);
+# digerleri kurum geneli. Faaliyet belgeleri envanter degisince kuyrukta otomatik yenilenir.
+FAALIYET_BAZLI = {"aydinlatma", "acik_riza"}
 
 BELGE_ADI = {
     "aydinlatma": "Aydınlatma Metni",
     "politika": "Kişisel Veri İşleme ve Koruma Politikası",
     "saklama_imha": "Kişisel Veri Saklama ve İmha Politikası",
     "veri_isleyen": "Veri İşleyen Protokolü",
+    "veri_ihlali": "Veri İhlali Müdahale Prosedürü",
+    "genel_aydinlatma": "Genel Aydınlatma Metni",
+    "basvuru_formu": "Kişisel Veri Sahibi Başvuru Formu",
+    "acik_riza": "Açık Rıza Beyanı",
 }
 
 
@@ -160,6 +175,32 @@ def _expand_list(d, degerler: dict[str, str]) -> None:
         par._p.getparent().remove(par._p)
 
 
+def _qr_png(metin: str, olcek: int = 8) -> bytes | None:
+    # QR kod (segno, saf Python). Kutuphane yoksa None: cagiran metne duser.
+    try:
+        import segno
+    except ImportError:
+        return None
+    buf = io.BytesIO()
+    segno.make(metin, error="m").save(buf, kind="png", scale=olcek, border=2)
+    return buf.getvalue()
+
+
+def _qr_yerlestir(d, url: str) -> None:
+    # Metni tam olarak ${qr_kod} olan paragraflara web adresinin QR kodu (resim) konur;
+    # adres bos ya da segno yoksa paragraf adresin kendisiyle (veya bos) doldurulur.
+    from docx.shared import Cm
+
+    for par in d.paragraphs:
+        tam = ("".join(r.text for r in par.runs) or par.text).strip()
+        if tam != "${qr_kod}":
+            continue
+        png = _qr_png(url) if url else None
+        _set_par(par, "" if png else (url or ""))
+        if png:
+            par.add_run().add_picture(io.BytesIO(png), width=Cm(4))
+
+
 def _set_par(par, metin: str) -> None:
     if par.runs:
         par.runs[0].text = metin
@@ -187,11 +228,13 @@ def doldur(sablon_yolu: Path, profile: OrgProfile,
     for ph in set(PH.findall(_belge_metni(d))):
         v = profile.value_for(ph)
         if v is not None:
-            degerler[ph] = v
+            # ${KURUM} / ${BIRIM} / ${ISLEME_AMACI}: baslik kullanimi, buyuk harfle (Turkce i/ı kurali)
+            degerler[ph] = _tr_buyuk(v) if ph in BUYUK_HARF else v
     # Envanterden/LLM'den uretilen bolumler profil degerlerini ezer
     degerler.update({k: v for k, v in (ekstra or {}).items() if v})
 
     _expand_list(d, degerler)
+    _qr_yerlestir(d, (profile.web_adres or "").strip())
 
     for par in d.paragraphs:
         _replace_in_paragraph(par, degerler)
@@ -223,6 +266,10 @@ def doldur(sablon_yolu: Path, profile: OrgProfile,
     return buf.getvalue(), kalan
 
 
+def _tr_buyuk(metin: str) -> str:
+    return metin.replace("i", "İ").replace("ı", "I").upper()
+
+
 def _belge_metni(d) -> str:
     parcalar = [p.text for p in d.paragraphs]
     for t in d.tables:
@@ -247,7 +294,8 @@ def sablon_bilgisi() -> list[dict[str, Any]]:
         out.append({
             "anahtar": anahtar, "ad": BELGE_ADI[anahtar], "dosya": dosya,
             "mevcut": True, "placeholder": ph,
-            "alanlar": sorted({ALIAS.get(x, x) for x in ph if x not in URETILEN_PH}),
+            "alanlar": sorted({ALIAS.get(x, x) for x in ph
+                               if x not in URETILEN_PH and x not in TURETILEN_PH and x not in FAALIYET_PH}),
             "uretilen_bolumler": sorted(set(ph) & URETILEN_PH),
         })
     return out
@@ -260,6 +308,8 @@ def bolumleri_uret(anahtar: str, profile: OrgProfile,
     if anahtar not in BOLUM_URETILEN or not rows:
         return {}, {}
     from . import sections
+    if anahtar == "veri_ihlali":
+        return sections.ihlal_hesapla(profile, rows, llm)
     return sections.hesapla(profile, rows, llm)
 
 

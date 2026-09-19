@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS kurum_profili (
 );
 """
 
-ALANLAR = ("kurum", "adres", "web_adres", "faaliyet",
+ALANLAR = ("kurum", "adres", "web_adres", "cagri_merkezi", "faaliyet",
            "veri_isleyen", "sozlesme_adi", "sozlesme_tarihi", "protokol_tarihi")
 
 

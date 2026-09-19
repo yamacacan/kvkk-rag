@@ -17,6 +17,9 @@ ALANLAR = [
     "veri_isleyen",
 ]
 
+# Sahiplik/atama sutunlari: RBAC kapsam katmani (own / assigned) bunlari kullanir.
+META_ALANLAR = ("created_by", "sorumlu_id")
+
 SCHEMA = f"""
 CREATE TABLE IF NOT EXISTS envanter (
     satir_no   INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,10 +27,19 @@ CREATE TABLE IF NOT EXISTS envanter (
     kaynak     TEXT NOT NULL DEFAULT 'xlsx',
     olusturma  TEXT,
     guncelleme TEXT,
-    notlar     TEXT
+    notlar     TEXT,
+    created_by INTEGER,
+    sorumlu_id INTEGER
 );
 CREATE INDEX IF NOT EXISTS idx_env_birim ON envanter(birim);
 CREATE INDEX IF NOT EXISTS idx_env_faaliyet ON envanter(faaliyet);
+
+-- assigned kapsami: satira ekip uyesi/denetci olarak atanan kullanicilar
+CREATE TABLE IF NOT EXISTS envanter_denetcileri (
+    satir_no INTEGER NOT NULL,
+    user_id  INTEGER NOT NULL,
+    PRIMARY KEY (satir_no, user_id)
+);
 
 CREATE TABLE IF NOT EXISTS envanter_log (
     id      INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -36,7 +48,8 @@ CREATE TABLE IF NOT EXISTS envanter_log (
     onceki  TEXT,
     sonraki TEXT,
     zaman   TEXT NOT NULL,
-    kaynak  TEXT
+    kaynak  TEXT,
+    kullanici_id INTEGER
 );
 """
 
@@ -73,6 +86,14 @@ def _migrate(conn: sqlite3.Connection) -> list[str]:
     eklenen = [a for a in ALANLAR if a not in var]
     for a in eklenen:
         conn.execute(f"ALTER TABLE envanter ADD COLUMN {a} TEXT")
+    for a in META_ALANLAR:
+        if a not in var:
+            conn.execute(f"ALTER TABLE envanter ADD COLUMN {a} INTEGER")
+            eklenen.append(a)
+    log_var = {r[1] for r in conn.execute("PRAGMA table_info(envanter_log)")}
+    if "kullanici_id" not in log_var:
+        conn.execute("ALTER TABLE envanter_log ADD COLUMN kullanici_id INTEGER")
+        eklenen.append("envanter_log.kullanici_id")
     if eklenen:
         conn.commit()
     return eklenen
@@ -120,21 +141,26 @@ def get(conn: sqlite3.Connection, satir_no: int) -> InventoryRow | None:
     return _to_row(r) if r else None
 
 
-def create(conn: sqlite3.Connection, veri: dict[str, Any], kaynak: str = "elle") -> int:
+def create(conn: sqlite3.Connection, veri: dict[str, Any], kaynak: str = "elle",
+           meta: dict[str, Any] | None = None, kullanici_id: int | None = None) -> int:
+    # meta: created_by / sorumlu_id gibi sahiplik sutunlari (RBAC kapsami icin)
     alanlar = [a for a in ALANLAR if a in veri]
-    sql = (f"INSERT INTO envanter ({', '.join(alanlar)}, kaynak, olusturma, guncelleme) "
-           f"VALUES ({','.join('?' * (len(alanlar) + 3))})")
-    cur = conn.execute(sql, [veri.get(a) for a in alanlar] + [kaynak, _now(), _now()])
+    ek = {k: v for k, v in (meta or {}).items() if k in META_ALANLAR and v is not None}
+    sutunlar = alanlar + list(ek) + ["kaynak", "olusturma", "guncelleme"]
+    sql = (f"INSERT INTO envanter ({', '.join(sutunlar)}) "
+           f"VALUES ({','.join('?' * len(sutunlar))})")
+    cur = conn.execute(sql, [veri.get(a) for a in alanlar] + list(ek.values()) + [kaynak, _now(), _now()])
     satir_no = cur.lastrowid
-    conn.execute("INSERT INTO envanter_log (satir_no, islem, sonraki, zaman, kaynak) VALUES (?,?,?,?,?)",
-                 (satir_no, "olustur", json.dumps(veri, ensure_ascii=False), _now(), kaynak))
+    conn.execute("INSERT INTO envanter_log (satir_no, islem, sonraki, zaman, kaynak, kullanici_id) "
+                 "VALUES (?,?,?,?,?,?)",
+                 (satir_no, "olustur", json.dumps(veri, ensure_ascii=False), _now(), kaynak, kullanici_id))
     conn.commit()
     _vektor_guncelle(get(conn, satir_no))
     return satir_no
 
 
 def update(conn: sqlite3.Connection, satir_no: int, veri: dict[str, Any],
-           kaynak: str = "elle") -> InventoryRow | None:
+           kaynak: str = "elle", kullanici_id: int | None = None) -> InventoryRow | None:
     mevcut = get(conn, satir_no)
     if not mevcut:
         return None
@@ -145,10 +171,11 @@ def update(conn: sqlite3.Connection, satir_no: int, veri: dict[str, Any],
             f"WHERE satir_no = ?",
             [veri[a] for a in alanlar] + [_now(), satir_no])
         conn.execute(
-            "INSERT INTO envanter_log (satir_no, islem, onceki, sonraki, zaman, kaynak) VALUES (?,?,?,?,?,?)",
+            "INSERT INTO envanter_log (satir_no, islem, onceki, sonraki, zaman, kaynak, kullanici_id) "
+            "VALUES (?,?,?,?,?,?,?)",
             (satir_no, "guncelle",
              json.dumps({a: getattr(mevcut, a) for a in alanlar}, ensure_ascii=False),
-             json.dumps({a: veri[a] for a in alanlar}, ensure_ascii=False), _now(), kaynak))
+             json.dumps({a: veri[a] for a in alanlar}, ensure_ascii=False), _now(), kaynak, kullanici_id))
         conn.commit()
     row = get(conn, satir_no)
     if alanlar:
@@ -156,13 +183,15 @@ def update(conn: sqlite3.Connection, satir_no: int, veri: dict[str, Any],
     return row
 
 
-def delete(conn: sqlite3.Connection, satir_no: int) -> bool:
+def delete(conn: sqlite3.Connection, satir_no: int, kullanici_id: int | None = None) -> bool:
     mevcut = get(conn, satir_no)
     if not mevcut:
         return False
     conn.execute("DELETE FROM envanter WHERE satir_no = ?", (satir_no,))
-    conn.execute("INSERT INTO envanter_log (satir_no, islem, onceki, zaman, kaynak) VALUES (?,?,?,?,?)",
-                 (satir_no, "sil", json.dumps(mevcut.to_dict(), ensure_ascii=False), _now(), "elle"))
+    conn.execute("DELETE FROM envanter_denetcileri WHERE satir_no = ?", (satir_no,))
+    conn.execute("INSERT INTO envanter_log (satir_no, islem, onceki, zaman, kaynak, kullanici_id) "
+                 "VALUES (?,?,?,?,?,?)",
+                 (satir_no, "sil", json.dumps(mevcut.to_dict(), ensure_ascii=False), _now(), "elle", kullanici_id))
     conn.commit()
     _vektor_sil(satir_no)
     return True

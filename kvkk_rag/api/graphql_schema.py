@@ -1,24 +1,40 @@
 # GraphQL semasi: envanter, bulgular, graf ve mevzuat aramasi tek arabirimde.
+# Kimlik: /graphql rotasi Bearer jeton ister (bootstrap); her alan kendi iznini
+# denetler, envanter alanlari kullanicinin kapsamiyla filtrelenir (ScopeFilter).
 from __future__ import annotations
 
-import functools
+import sqlite3
 from typing import Any
 
 import strawberry
+from fastapi import Depends, Request
+from strawberry.types import Info
 
 from ..graph import query as GQ
 from ..graph import schema as GS
 from ..index import lexical_store
-from ..inventory import audit as inv_audit
 from ..inventory import loader as inv_loader
-from ..retrieval import hybrid
+from .app.Http.Middleware.authenticate import authenticate
+from .app.Models.user import User
+from .app.Services.inventory_service import InventoryService
+from .database.connection import get_db
 
 
-@functools.lru_cache(maxsize=1)
-def _inventory() -> list[inv_loader.InventoryRow]:
-    rows, _ = inv_loader.load()
-    inv_audit.audit(rows)
-    return rows
+async def get_context(request: Request, user: User = Depends(authenticate),
+                      conn: sqlite3.Connection = Depends(get_db)) -> dict[str, Any]:
+    return {"request": request, "user": user, "conn": conn}
+
+
+def _authorize(info: Info, permission: str) -> tuple[User, sqlite3.Connection]:
+    user, conn = info.context["user"], info.context["conn"]
+    if not user.can(conn, permission):
+        raise PermissionError(f"Bu alan için '{permission}' yetkisi gerekiyor.")
+    return user, conn
+
+
+def _inventory(info: Info, module: str = "inventory", action: str = "view") -> list[inv_loader.InventoryRow]:
+    user, conn = _authorize(info, f"{module}.{action}")
+    return InventoryService.rows(conn, user, module, action)
 
 
 @strawberry.type
@@ -118,6 +134,7 @@ class Query:
     @strawberry.field(description="Envanter satirlari; her alanda bagimsiz filtre")
     def envanter(
         self,
+        info: Info,
         birim: str | None = None,
         faaliyet: str | None = None,
         veri_kategorisi: str | None = None,
@@ -128,7 +145,7 @@ class Query:
         limit: int = 50,
         offset: int = 0,
     ) -> list[EnvanterSatiri]:
-        rows = _inventory()
+        rows = _inventory(info)
 
         def ok(r: inv_loader.InventoryRow) -> bool:
             if birim and birim.lower() not in (r.birim or "").lower():
@@ -152,8 +169,8 @@ class Query:
         return [_to_row(r) for r in rows if ok(r)][offset: offset + limit]
 
     @strawberry.field(description="Envanter denetim ozeti")
-    def denetim_ozeti(self) -> DenetimOzeti:
-        rows = _inventory()
+    def denetim_ozeti(self, info: Info) -> DenetimOzeti:
+        rows = _inventory(info, "findings", "view")
         bulgu = sum(len(r.bulgular) for r in rows)
         temiz = sum(1 for r in rows if not r.bulgular)
         sev: dict[str, int] = {}
@@ -167,7 +184,8 @@ class Query:
             orta=sev.get("orta", 0))
 
     @strawberry.field(description="Bulgu sayisina gore en riskli faaliyetler")
-    def faaliyet_riski(self, limit: int = 10) -> list[FaaliyetRisk]:
+    def faaliyet_riski(self, info: Info, limit: int = 10) -> list[FaaliyetRisk]:
+        _authorize(info, "graph.view")
         conn = GS.connect()
         try:
             return [FaaliyetRisk(faaliyet=r["faaliyet"], satir=r["satir"],
@@ -177,7 +195,9 @@ class Query:
             conn.close()
 
     @strawberry.field(description="Mevzuatta kaynak dayanakli arama")
-    def mevzuat_ara(self, soru: str, limit: int = 8) -> list[Kaynak]:
+    def mevzuat_ara(self, info: Info, soru: str, limit: int = 8) -> list[Kaynak]:
+        _authorize(info, "chat.use")
+        from ..retrieval import hybrid  # torch: tembel
         conn = lexical_store.connect()
         try:
             rows = hybrid.search(soru, conn=conn, limit=limit)
@@ -190,7 +210,8 @@ class Query:
                 for r in rows]
 
     @strawberry.field(description="Bir KVKK maddesine bagli kararlar ve hukuki sebepler")
-    def madde_etkisi(self, madde_no: str) -> MaddeEtkisi | None:
+    def madde_etkisi(self, info: Info, madde_no: str) -> MaddeEtkisi | None:
+        _authorize(info, "graph.view")
         conn = GS.connect()
         try:
             m = GQ.madde_etkisi(conn, madde_no)
@@ -204,7 +225,8 @@ class Query:
             conn.close()
 
     @strawberry.field(description="Graf istatistikleri")
-    def graf_ozeti(self) -> strawberry.scalars.JSON:
+    def graf_ozeti(self, info: Info) -> strawberry.scalars.JSON:
+        _authorize(info, "graph.view")
         conn = GS.connect()
         try:
             return GS.stats(conn)

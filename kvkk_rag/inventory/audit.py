@@ -92,8 +92,10 @@ def ozel_nitelikli_sebep_uyumsuz(row: InventoryRow):
             "işleme şartı belirtilmemiş.",
             "KVKK m.6", "hukuki_sebep", None)
         return
-    madde = taxonomy.madde_for_sebep(row.hukuki_sebep)
-    if madde and madde != "6":
+    # Ad birden fazla maddede gecebilir (m.5 ve m.6'da ayni sart); m.6'da varsa uyumlu sayilir
+    maddeler = taxonomy.maddeler_for_sebep(row.hukuki_sebep)
+    if maddeler and "6" not in maddeler:
+        madde = "/".join(sorted(maddeler, key=int))
         yield Finding(
             "ENV-004", row.satir_no, KRITIK,
             "Özel nitelikli veri genel işleme şartına dayandırılmış",

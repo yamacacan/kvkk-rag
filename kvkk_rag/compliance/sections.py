@@ -10,8 +10,12 @@ from typing import Any
 from ..inventory import normalize, taxonomy
 from ..inventory.loader import InventoryRow
 
-VERITABANI = ("hukuki_sebepler", "kayit_ortamlari", "saklama_ozeti")
-YAPAY_ZEKA = ("politika_kapsam", "risk_analizi")
+# Politika sablonu
+VERITABANI = ("hukuki_sebepler", "kayit_ortamlari", "saklama_ozeti",
+              # Veri ihlali mudahale proseduru
+              "ihlal_birimleri", "ihlal_veri_kategorileri")
+YAPAY_ZEKA = ("politika_kapsam", "risk_analizi",
+              "ihlal_senaryolari", "ihlal_risk_degerlendirmesi")
 
 SISTEM = (
     "Sen bir KVKK (6698 sayılı Kanun) uyum uzmanısın. Türkçe, resmî ve kurumsal "
@@ -218,4 +222,102 @@ def hesapla(profile, rows: list[InventoryRow], llm=None) -> tuple[dict[str, str]
         "abartma. En fazla iki paragraf.",
         ro, _risk_yedek(ro))
 
+    return degerler, kaynak
+
+
+# --- Veri ihlali mudahale proseduru --------------------------------------------
+
+def ihlal_birimleri(rows: list[InventoryRow]) -> str:
+    # Bolum 3: ihlal halinde departman yetkilisi ekibe katilacak birimler (envanterden)
+    birimler = sorted({(r.birim or "").strip() for r in rows if (r.birim or "").strip()}, key=str.casefold)
+    if not birimler:
+        return "VERİ SORUMLUSU'nun kişisel veri işleyen tüm birimleri"
+    return "\n".join(f"• {b}" for b in birimler)
+
+
+def ihlal_veri_kategorileri(rows: list[InventoryRow]) -> str:
+    # Bolum 4.4: ilgili kisiye bildirimde kullanilacak kisisel / ozel nitelikli ayrimi
+    kategoriler = sorted(_cok_degerli(rows, "veri_kategorisi"), key=str.casefold)
+    if not kategoriler:
+        return "Veri kategorileri kişisel veri işleme envanterinde tanımlanmamıştır."
+    ozel = [k for k in kategoriler if taxonomy.is_ozel_nitelikli_kategori(k)]
+    genel = [k for k in kategoriler if k not in ozel]
+    satirlar = [f"• {k} — özel nitelikli kişisel veri (KANUN m.6)" for k in ozel]
+    satirlar += [f"• {k} — kişisel veri" for k in genel]
+    return "\n".join(satirlar)
+
+
+def _ihlal_olgulari(profile, rows: list[InventoryRow]) -> dict[str, Any]:
+    o = _kapsam_olgulari(profile, rows)
+    ortamlar = sorted(_cok_degerli(rows, "kayit_ortami"), key=str.casefold)
+    alicilar = sorted(_cok_degerli(rows, "alici_grubu"), key=str.casefold)
+    teknik = sorted(_cok_degerli(rows, "teknik_tedbir"), key=str.casefold)
+    return {
+        "kurum": o["kurum"], "birimler": o["birimler"], "faaliyet_sayisi": len(o["faaliyetler"]),
+        "kategoriler": o["kategoriler"], "ozel_nitelikli": o["ozel_nitelikli"],
+        "kayit_ortamlari": ortamlar, "alici_gruplari": alicilar[:15],
+        "yurt_disi_ulkeler": o["yurt_disi_ulkeler"], "teknik_tedbirler": teknik[:15], "satir": o["satir"],
+    }
+
+
+def _ihlal_senaryo_yedek(o: dict[str, Any]) -> str:
+    p = (f"VERİ SORUMLUSU bünyesinde {len(o['birimler'])} birim tarafından yürütülen {o['faaliyet_sayisi']} "
+         f"işleme faaliyetinde {len(o['kategoriler'])} veri kategorisi işlenmektedir")
+    p += (f"; kişisel veriler {', '.join(o['kayit_ortamlari'])} ortamlarında tutulmaktadır." if o["kayit_ortamlari"]
+          else ".")
+    if o["ozel_nitelikli"]:
+        p += (f" {', '.join(o['ozel_nitelikli'])} kategorilerindeki özel nitelikli kişisel verilere yetkisiz erişim, "
+              "ilgili kişiler bakımından en ağır sonuçları doğurabilecek ihlal senaryosudur.")
+    if o["alici_gruplari"]:
+        p += (f" Verilerin {', '.join(o['alici_gruplari'][:6])} gibi alıcı gruplarına aktarımı sırasında yanlış "
+              "alıcıya iletim veya aktarım kanalının ele geçirilmesi de olası ihlal senaryoları arasındadır.")
+    if o["yurt_disi_ulkeler"]:
+        p += (f" {', '.join(o['yurt_disi_ulkeler'])} ülkelerine yapılan yurt dışı aktarımlarda aktarım güvenliğinin "
+              "sağlanamaması ayrıca değerlendirilir.")
+    return p
+
+
+def _ihlal_risk_yedek(o: dict[str, Any], r: dict[str, Any]) -> str:
+    p = (f"Kişisel veri işleme envanteri üzerinde yürütülen son denetimde {r['incelenen_faaliyet']} işleme faaliyeti "
+         f"incelenmiş, toplam {r['bulgu_sayisi']} bulgu tespit edilmiştir (uyum oranı %{r['uyum_orani_yuzde']}).")
+    if r["bulgu_tipleri"]:
+        p += (" Bir ihlal halinde ilgili kişiler üzerindeki etkiyi artıran başlıca eksiklikler: "
+              + "; ".join(f"{t['baslik']} ({t['adet']} faaliyet)" for t in r["bulgu_tipleri"][:5]) + ".")
+    if o["ozel_nitelikli"]:
+        p += (f" {', '.join(o['ozel_nitelikli'])} kategorilerini içeren faaliyetler, özel nitelikli kişisel veri "
+              "işlendiğinden ihlal halinde yüksek riskli olarak değerlendirilir ve KURUL'a bildirimde öncelikle ele alınır.")
+    p += " Risk düzeyi belirlenirken bu bulgular, ihlalin niteliği ve etkilenen kişi kategorileriyle birlikte değerlendirilir."
+    return p
+
+
+def ihlal_hesapla(profile, rows: list[InventoryRow], llm=None) -> tuple[dict[str, str], dict[str, str]]:
+    # Veri İhlali Müdahale Prosedürü: (placeholder -> metin, placeholder -> kaynak etiketi)
+    from ..inventory.audit import audit
+
+    degerler: dict[str, str] = {
+        "ihlal_birimleri": ihlal_birimleri(rows),
+        "ihlal_veri_kategorileri": ihlal_veri_kategorileri(rows),
+    }
+    kaynak = {"ihlal_birimleri": "veritabani", "ihlal_veri_kategorileri": "veritabani"}
+
+    o = _ihlal_olgulari(profile, rows)
+    degerler["ihlal_senaryolari"], kaynak["ihlal_senaryolari"] = _llm_yaz(
+        llm,
+        "Bir Veri İhlali Müdahale Prosedürü'nün 'Kişisel Veri İhlali' bölümüne eklenecek, bu kuruma özgü olası ihlal "
+        "senaryolarını anlatan paragrafı yaz. Hangi kayıt ortamlarında tutulan hangi veri kategorilerinin, hangi alıcı "
+        "gruplarına aktarım ve yurt dışı aktarım sırasında ne tür ihlallere (kayıp, yetkisiz erişim, yanlış alıcıya "
+        "iletim, siber saldırı) açık olduğunu somut belirt; özel nitelikli veriler varsa ayrıca vurgula. "
+        "En fazla iki paragraf.",
+        o, _ihlal_senaryo_yedek(o))
+
+    r = _risk_olgulari(profile.kurum, audit(list(rows)))
+    degerler["ihlal_risk_degerlendirmesi"], kaynak["ihlal_risk_degerlendirmesi"] = _llm_yaz(
+        llm,
+        "Bir Veri İhlali Müdahale Prosedürü'nün 'Risklerin Tespit Edilmesi' bölümüne eklenecek, envanter denetimi "
+        "sonuçlarına dayanan kuruma özgü ihlal risk değerlendirmesi paragrafını yaz. Hangi bulguların (tedbir "
+        "eksikliği, saklama süresi belirsizliği, özel nitelikli veri) bir ihlal halinde ilgili kişiler üzerindeki "
+        "etkiyi artırdığını ve hangi faaliyetlerin yüksek riskli sayılacağını belirt. Bulguları küçümseme veya "
+        "abartma. En fazla iki paragraf.",
+        {"denetim": r, "ozel_nitelikli": o["ozel_nitelikli"], "kayit_ortamlari": o["kayit_ortamlari"]},
+        _ihlal_risk_yedek(o, r))
     return degerler, kaynak

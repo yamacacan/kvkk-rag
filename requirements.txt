@@ -8,6 +8,7 @@ pypdf==6.18.1
 pymupdf==1.25.1
 openpyxl==3.1.5
 python-docx==1.1.2
+segno==1.6.6            # belgelere QR kod (Genel Aydınlatma Metni)
 PyYAML==6.0.2
 
 # --- embedding / chunking ---
@@ -33,6 +34,9 @@ ollama==0.4.4
 fastapi==0.115.6
 uvicorn[standard]==0.34.0
 strawberry-graphql[fastapi]==0.327.7
+# RBAC: sifre ozeti ve jetonlar stdlib (hashlib/secrets). Yetki onbellegi icin
+# Redis istege bagli: KVKK_REDIS_URL verilirse `redis` paketi gerekir.
+# redis==5.2.1
 
 # --- yardimci ---
 tqdm==4.67.1

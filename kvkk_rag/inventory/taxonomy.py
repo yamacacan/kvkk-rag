@@ -41,15 +41,52 @@ def values(kind: str) -> list[str]:
     return [it["ad"] for it in load().get(kind, [])]
 
 
+SEBEP_GRUBU_BASLIK = {
+    "5": "Kişisel veri işleme şartları",
+    "6": "Özel nitelikli kişisel veri işleme şartları",
+    "28": "İstisna sebepler",
+}
+
+
+def kanonik_sebep(sebep_adi: str) -> str | None:
+    # Ham degeri kanonik ada esler: birebir, normalize, kirpilmis onek ("...") veya bulanik.
+    ad = (sebep_adi or "").strip()
+    if not ad:
+        return None
+    adlar = values("hukuki_sebep")
+    if ad in adlar:
+        return ad
+    from . import normalize  # dongusel import: normalize -> taxonomy
+    m = normalize.match_one(ad, adlar)
+    return m.kanonik if m.yontem in (normalize.EXACT, normalize.NORMALIZED, normalize.PREFIX, normalize.FUZZY) else None
+
+
+def maddeler_for_sebep(sebep_adi: str) -> set[str]:
+    # Ayni ad birden fazla grupta olabilir ("Kanunlarda Açıkça Öngörülmesi" hem m.5 hem m.6);
+    # bu yuzden tek madde degil, adin gectigi tum maddeler doner.
+    ad = kanonik_sebep(sebep_adi)
+    return {SEBEP_GRUBU_MADDE[it["aciklama"]] for it in load().get("hukuki_sebep", [])
+            if it["ad"] == ad and it["aciklama"] in SEBEP_GRUBU_MADDE}
+
+
 def madde_for_sebep(sebep_adi: str) -> str | None:
-    for it in load().get("hukuki_sebep", []):
-        if it["ad"] == sebep_adi:
-            return SEBEP_GRUBU_MADDE.get(it["aciklama"])
+    # Geriye donuk: tek madde; belirsiz adda m.6 (dar sart) yerine genel sart (m.5) doner
+    maddeler = maddeler_for_sebep(sebep_adi)
+    for m in ("5", "6", "28"):
+        if m in maddeler:
+            return m
     return None
 
 
 def is_ozel_nitelikli_sebep(sebep_adi: str) -> bool:
-    return madde_for_sebep(sebep_adi) == "6"
+    return "6" in maddeler_for_sebep(sebep_adi)
+
+
+def hukuki_sebep_detay() -> list[dict[str, Any]]:
+    # Acilir liste icin: madde grubuna gore, ad tekrarlari korunarak (m.5/m.6 ayni ad)
+    return [{"ad": it["ad"], "madde": SEBEP_GRUBU_MADDE.get(it["aciklama"]),
+             "grup": SEBEP_GRUBU_BASLIK.get(SEBEP_GRUBU_MADDE.get(it["aciklama"]), it["aciklama"])}
+            for it in load().get("hukuki_sebep", [])]
 
 
 def is_ozel_nitelikli_kategori(kategori: str) -> bool:

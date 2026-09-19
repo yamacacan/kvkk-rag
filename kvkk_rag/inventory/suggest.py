@@ -200,7 +200,7 @@ def suggest(veri: str, birim: str, faaliyet: str, ek_bilgi: str = "",
     if kat and taxonomy.is_ozel_nitelikli_kategori(kat):
         oneri["ozel_nitelikli"] = True
         sebep = oneri.get("hukuki_sebep")
-        if sebep and taxonomy.madde_for_sebep(sebep) != "6":
+        if sebep and not taxonomy.is_ozel_nitelikli_sebep(sebep):
             oneri.setdefault("uyarilar", []).append(
                 f"'{kat}' özel nitelikli kişisel veridir; seçilen hukuki sebep "
                 f"KVKK m.6 kapsamında değil. Bu haliyle kaydedilirse ENV-004 bulgusu oluşur.")

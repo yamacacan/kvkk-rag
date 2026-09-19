@@ -73,6 +73,20 @@ services:
               count: all
               capabilities: [gpu]
 
+  # Vue arayuzunu derler (web/dist); api servisi bind-mount uzerinden servis eder.
+  # docker compose --profile web run --rm web-build
+  web-build:
+    image: node:22-alpine
+    container_name: kvkk-rag-web-build
+    profiles: ["web"]
+    working_dir: /web
+    volumes:
+      - ./web:/web
+    environment:
+      # Ayri deploy'da API origin'i: VITE_API_BASE=https://api.ornek.com
+      VITE_API_BASE: ${VITE_API_BASE:-}
+    command: sh -c "npm ci --no-audit --no-fund && npm run build"
+
 volumes:
   hf-models:
   ollama-models:

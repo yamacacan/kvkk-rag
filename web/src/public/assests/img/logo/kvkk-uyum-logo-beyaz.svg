@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">KVKK Uyum Logo (beyaz)</title>
+  <desc id="desc">Beyaz renkli, karanlık zemin için belge, kalkan, kullanıcı ve doğrulama işaretinden oluşan kvkk uyum logosu.</desc>
+  <!-- Shield -->
+  <path d="M300 145
+           L405 105 L405 190
+           L355 215 L355 375
+           C355 485 430 555 512 595
+           C545 579 576 562 602 540
+           L625 610
+           C590 638 552 660 512 680
+           C385 620 300 535 300 390 Z"
+        fill="#FFFFFF"/>
+
+  <!-- Document -->
+  <path d="M405 105 H665 L760 200 V385
+           H690 V245 H610 V175 H475 V515
+           C455 500 430 480 405 450 Z"
+        fill="#FFFFFF"/>
+
+  <!-- Fold -->
+  <path d="M665 105 V200 H760 Z" fill="#4B20B8"/>
+
+  <!-- User -->
+  <circle cx="540" cy="260" r="38" fill="#4B20B8"/>
+  <path d="M470 345 C470 305 495 285 540 285
+           C585 285 610 305 610 345
+           C610 360 600 368 585 368
+           H495 C480 368 470 360 470 345 Z"
+        fill="#4B20B8"/>
+
+  <!-- Document lines -->
+  <rect x="470" y="405" width="170" height="24" rx="12" fill="#4B20B8"/>
+  <rect x="470" y="450" width="105" height="24" rx="12" fill="#4B20B8"/>
+
+  <!-- Check badge -->
+  <circle cx="700" cy="500" r="105" fill="#FFFFFF"/>
+  <path d="M650 500 L684 534 L754 462"
+        fill="none" stroke="#4B20B8" stroke-width="28"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Wordmark -->
+  <text x="512" y="805"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="142"
+        font-weight="700"
+        letter-spacing="2"
+        fill="#FFFFFF">KVKK</text>
+
+  <text x="512" y="895"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="68"
+        font-weight="500"
+        letter-spacing="30"
+        fill="#C4B5FD">UYUM</text>
+</svg>

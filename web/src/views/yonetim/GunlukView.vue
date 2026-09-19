@@ -12,7 +12,6 @@ const SUTUNLAR = [
   { key: 'user_email', label: 'Kim' },
   { key: 'action', label: 'Eylem' },
   { key: 'target_label', label: 'Hedef' },
-  { key: 'ip', label: 'IP', width: 'w-28' },
   { key: 'detay', label: 'Detay', width: 'w-20', align: 'right' },
 ];
 
@@ -107,7 +106,6 @@ onMounted(yukle);
         <template #cell-user_email="{ value }"><span class="font-semibold text-t-1">{{ value || 'sistem' }}</span></template>
         <template #cell-action="{ value }"><span class="rounded px-1.5 py-0.5 text-[10px] font-semibold border" :class="EYLEM[value]?.sinif || 'bg-bg-3 text-t-2 border-line'">{{ EYLEM[value]?.ad || value }}</span> <span class="font-mono text-[10px] text-t-muted">{{ value }}</span></template>
         <template #cell-target_label="{ row: k }"><span class="text-t-2"><span v-if="k.target_type" class="text-[10px] text-t-3 font-mono mr-1">{{ k.target_type }}</span>{{ kisalt(k.target_label || k.target_id || '—', 40) }}</span></template>
-        <template #cell-ip="{ value }"><span class="font-mono text-[10.5px] text-t-3">{{ value || '—' }}</span></template>
         <template #cell-detay="{ row: k }">
           <button v-if="k.before || k.after" class="text-[11px] text-indigo-400 hover:text-indigo-300" @click="acik = acik === k.id ? null : k.id">{{ acik === k.id ? 'Gizle' : 'Göster' }}</button>
         </template>

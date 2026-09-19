@@ -50,5 +50,12 @@ async function giris() {
       class="w-full h-9 rounded-lg bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 text-white text-xs font-bold shadow-lg shadow-indigo-600/30">
       {{ bekliyor ? 'Giriş yapılıyor…' : 'Giriş Yap' }}
     </button>
+    <div class="mt-4">
+      <p class="text-[11px] font-semibold text-[var(--t1)] mb-1">Demo Bilgileri:</p>
+      <div class="mb-2">
+        <p class="text-[11px] text-[var(--t2)]"><strong class="font-semibold">E-posta:</strong> admin@kvkk.local</p>
+        <p class="text-[11px] text-[var(--t2)]"><strong class="font-semibold">Şifre:</strong> admin1234</p>
+      </div>
+    </div>
   </form>
 </template>

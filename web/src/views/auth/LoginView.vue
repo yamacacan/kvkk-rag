@@ -55,6 +55,7 @@ async function giris() {
       <div class="mb-2">
         <p class="text-[11px] text-[var(--t2)]"><strong class="font-semibold">E-posta:</strong> admin@kvkk.local</p>
         <p class="text-[11px] text-[var(--t2)]"><strong class="font-semibold">Şifre:</strong> admin1234</p>
+        <p>Veriler 25 dakika gibi bir sürede sıfırlanır belge üretimleri demo modunda yoktur</p>
       </div>
     </div>
   </form>

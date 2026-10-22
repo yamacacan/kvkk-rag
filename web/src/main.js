@@ -4,11 +4,15 @@ import App from './App.vue';
 import router from './router';
 import { FontAwesomeIcon } from './plugins/fontawesome';
 import './style.css';
+import { inject } from '@vercel/analytics';
 
 import { useUiStore } from './stores/ui';
 
 const pinia = createPinia();
 createApp(App).component('FaIcon', FontAwesomeIcon).use(pinia).use(router).mount('#app');
+
+// Vercel Web Analytics
+inject();
 
 // Tema: kayitli tercihi uygula; "system" seciliyse isletim sistemi degisimini izle
 const ui = useUiStore(pinia);
